@@ -2,7 +2,7 @@
 Software needed for this course:
  - Jupyter notebook:
     - pip install jupyter
-    - VSCode:
+    - VSCode extension:
         Name: Jupyter
         Id: ms-toolsai.jupyter
         Description: Jupyter notebook support, interactive programming and computing that supports Intellisense, debugging and more.
