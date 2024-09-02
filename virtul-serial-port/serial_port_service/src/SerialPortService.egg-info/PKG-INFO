@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: SerialPortService
+Version: 1.0.0
+Summary: A Windows service that manages virtual serial ports and handles communication with a real serial port.
+Home-page: https://github.com/Victor-Candeias/Python/serial-port-service
+Author: Victor Candeias
+Author-email: victor.s.candeias@ctt.pt
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Win32 (MS Windows)
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Topic :: System :: Networking
+Classifier: Topic :: System :: Hardware :: Hardware Drivers
+Requires-Python: >=3.8
+Requires-Dist: pywin32
+Requires-Dist: pyserial

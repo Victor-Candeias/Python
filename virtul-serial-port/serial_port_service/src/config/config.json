@@ -1,0 +1,8 @@
+[
+  {
+    "real_port_name": "COM3",
+    "virtual_port1_name": "COM13",
+    "virtual_port2_name": "COM23",
+    "baud_rate": 9600
+  }
+]

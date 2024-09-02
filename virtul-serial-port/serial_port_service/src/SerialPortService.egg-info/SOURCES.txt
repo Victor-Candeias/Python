@@ -1,0 +1,7 @@
+setup.py
+src/SerialPortService.egg-info/PKG-INFO
+src/SerialPortService.egg-info/SOURCES.txt
+src/SerialPortService.egg-info/dependency_links.txt
+src/SerialPortService.egg-info/entry_points.txt
+src/SerialPortService.egg-info/requires.txt
+src/SerialPortService.egg-info/top_level.txt

@@ -1,0 +1,2 @@
+[console_scripts]
+serial-port-service = src.serial_port_service:main
