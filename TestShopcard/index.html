@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopcard API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label, input, button {
+            margin: 5px 0;
+            display: block;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Shopcard API Interface</h1>
+
+    <!-- Form to Get Shopcards -->
+    <h2>Get Shopcards</h2>
+    <button id="getShopcardsBtn">Get All Shopcards</button>
+    <div id="getShopcardsResult" class="result"></div>
+
+    <!-- Form to Create Shopcard -->
+    <h2>Create Shopcard</h2>
+    <label for="shopcardName">Name:</label>
+    <input type="text" id="shopcardName" placeholder="Enter shopcard name">
+    <label for="shopcardPrice">Price:</label>
+    <input type="number" id="shopcardPrice" placeholder="Enter shopcard price">
+    <label for="shopcardDescription">Description:</label>
+    <input type="text" id="shopcardDescription" placeholder="Enter shopcard description">
+    <button id="createShopcardBtn">Create Shopcard</button>
+    <div id="createShopcardResult" class="result"></div>
+
+    <!-- Form to Delete Shopcard -->
+    <h2>Delete Shopcard</h2>
+    <label for="txnKeyId">Transaction Key ID:</label>
+    <input type="text" id="txnKeyId" placeholder="Enter transaction key ID">
+    <button id="deleteShopcardBtn">Delete Shopcard</button>
+    <div id="deleteShopcardResult" class="result"></div>
+
+    <script>
+        // URL to the API endpoint
+        const apiUrl = 'http://localhost:5000/api/shopcart';
+
+        // Get Shopcards
+        document.getElementById('getShopcardsBtn').addEventListener('click', async () => {
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                });
+                const result = await response.json();
+                document.getElementById('getShopcardsResult').textContent = JSON.stringify(result, null, 2);
+            } catch (error) {
+                document.getElementById('getShopcardsResult').textContent = 'Error: ' + error;
+            }
+        });
+
+        // Create Shopcard
+        document.getElementById('createShopcardBtn').addEventListener('click', async () => {
+            const name = document.getElementById('shopcardName').value;
+            const price = document.getElementById('shopcardPrice').value;
+            const description = document.getElementById('shopcardDescription').value;
+
+            const data = {
+                name: name,
+                price: parseFloat(price),
+                description: description
+            };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+                document.getElementById('createShopcardResult').textContent = JSON.stringify(result, null, 2);
+            } catch (error) {
+                document.getElementById('createShopcardResult').textContent = 'Error: ' + error;
+            }
+        });
+
+        // Delete Shopcard
+        document.getElementById('deleteShopcardBtn').addEventListener('click', async () => {
+            const txnKeyId = document.getElementById('txnKeyId').value;
+            try {
+                const response = await fetch(`${apiUrl}/${txnKeyId}`, {
+                    method: 'DELETE'
+                });
+                const result = await response.json();
+                document.getElementById('deleteShopcardResult').textContent = JSON.stringify(result, null, 2);
+            } catch (error) {
+                document.getElementById('deleteShopcardResult').textContent = 'Error: ' + error;
+            }
+        });
+    </script>
+
+</body>
+</html>
