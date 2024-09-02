@@ -1,0 +1,362 @@
+2024-08-25 15:36:56,454 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-25 15:36:56,455 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-25 15:36:56,458 - werkzeug - INFO -  * Restarting with stat
+2024-08-25 15:36:57,049 - werkzeug - WARNING -  * Debugger is active!
+2024-08-25 15:36:57,061 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-25 15:42:47,326 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-25 15:42:47,328 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-25 15:42:47,330 - werkzeug - INFO -  * Restarting with stat
+2024-08-25 15:42:47,779 - werkzeug - WARNING -  * Debugger is active!
+2024-08-25 15:42:47,790 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-25 15:49:03,968 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-25 15:49:03,969 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-25 15:49:03,969 - werkzeug - INFO -  * Restarting with stat
+2024-08-25 15:49:04,529 - werkzeug - WARNING -  * Debugger is active!
+2024-08-25 15:49:04,536 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-25 16:05:50,257 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-25 16:05:50,257 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-25 16:05:50,258 - werkzeug - INFO -  * Restarting with stat
+2024-08-25 16:05:50,775 - werkzeug - WARNING -  * Debugger is active!
+2024-08-25 16:05:50,782 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-25 16:06:16,730 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-25 16:06:16,732 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-25 16:06:42,422 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:06:42] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:06:49,456 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:06:49] "[31m[1mPOST /api/get_event_channel HTTP/1.1[0m" 400 -
+2024-08-25 16:07:03,844 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:07:03] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:07:11,084 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:07:11] "[31m[1mPOST /api/get_event_channel HTTP/1.1[0m" 400 -
+2024-08-25 16:07:14,809 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:07:14] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:07:20,284 - app - ERROR - Exception on /api/get_event_channel [POST]
+Traceback (most recent call last):
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask_cors\extension.py", line 178, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_MyWork\Formacao\Python\peripheral-device-manager\app\routes.py", line 61, in get_event_channel
+    websocket_uri = url_for('socketio.connect', client_id=client_id, _external=True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\helpers.py", line 220, in url_for
+    return current_app.url_for(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1084, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1073, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\werkzeug\routing\map.py", line 924, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'socketio.connect' with values ['client_id']. Did you mean 'static' instead?
+2024-08-25 16:07:20,352 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:07:20] "[35m[1mPOST /api/get_event_channel HTTP/1.1[0m" 500 -
+2024-08-25 16:07:59,398 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:07:59] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:08:39,896 - app - ERROR - Exception on /api/get_event_channel [POST]
+Traceback (most recent call last):
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask_cors\extension.py", line 178, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_MyWork\Formacao\Python\peripheral-device-manager\app\routes.py", line 61, in get_event_channel
+    websocket_uri = url_for('socketio.connect', client_id=client_id, _external=True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\helpers.py", line 220, in url_for
+    return current_app.url_for(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1084, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1073, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\werkzeug\routing\map.py", line 924, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'socketio.connect' with values ['client_id']. Did you mean 'static' instead?
+2024-08-25 16:08:39,913 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:08:39] "[35m[1mPOST /api/get_event_channel HTTP/1.1[0m" 500 -
+2024-08-25 16:10:19,113 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-25 16:10:19,115 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-25 16:10:43,261 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:10:43] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:10:54,805 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:10:54] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:10:54,816 - engineio.server - ERROR - null is not an accepted origin. (further occurrences of this error will be logged with level INFO)
+2024-08-25 16:10:54,819 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:10:54] "[31m[1mGET /socket.io/?client_id=1 HTTP/1.1[0m" 400 -
+2024-08-25 16:11:28,566 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:11:28] "[33mOPTIONS /api/input_job HTTP/1.1[0m" 404 -
+2024-08-25 16:12:47,455 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-25 16:12:47,457 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-25 16:13:04,263 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:13:04] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:13:06,236 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:13:06] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:13:06,245 - engineio.server - ERROR - null is not an accepted origin. (further occurrences of this error will be logged with level INFO)
+2024-08-25 16:13:06,247 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:13:06] "[31m[1mGET /socket.io/?client_id=1 HTTP/1.1[0m" 400 -
+2024-08-25 16:13:22,884 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:13:22] "OPTIONS /api/input_job HTTP/1.1" 200 -
+2024-08-25 16:13:47,691 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:13:47] "[31m[1mPOST /api/input_job HTTP/1.1[0m" 400 -
+2024-08-25 16:13:53,961 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:13:53] "OPTIONS /api/input_job HTTP/1.1" 200 -
+2024-08-25 16:14:30,975 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:14:30] "POST /api/input_job HTTP/1.1" 200 -
+2024-08-25 16:16:48,377 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-25 16:16:48,377 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-25 16:16:48,377 - werkzeug - INFO -  * Restarting with stat
+2024-08-25 16:16:48,859 - werkzeug - WARNING -  * Debugger is active!
+2024-08-25 16:16:48,865 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-25 16:16:57,883 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-25 16:16:57,885 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-25 16:17:52,551 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-25 16:17:52,553 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-25 16:18:15,741 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:18:15] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:18:44,495 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:18:44] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:18:55,202 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:18:55] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:18:55,211 - engineio.server - ERROR - null is not an accepted origin. (further occurrences of this error will be logged with level INFO)
+2024-08-25 16:18:55,213 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:18:55] "[31m[1mGET /socket.io/?client_id=1 HTTP/1.1[0m" 400 -
+2024-08-25 16:23:53,845 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-25 16:23:53,846 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-25 16:23:53,846 - werkzeug - INFO -  * Restarting with stat
+2024-08-25 16:23:54,450 - werkzeug - WARNING -  * Debugger is active!
+2024-08-25 16:23:54,458 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-25 16:23:59,511 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\app\\routes.py', reloading
+2024-08-25 16:24:09,339 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-25 16:24:09,340 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-25 16:24:09,341 - werkzeug - INFO -  * Restarting with stat
+2024-08-25 16:24:10,121 - werkzeug - WARNING -  * Debugger is active!
+2024-08-25 16:24:10,131 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-25 16:24:30,685 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:24:30] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:24:30,690 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:24:30] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:24:30,702 - engineio.server - ERROR - null is not an accepted origin. (further occurrences of this error will be logged with level INFO)
+2024-08-25 16:24:30,704 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:24:30] "[31m[1mGET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6A8ufg HTTP/1.1[0m" 400 -
+2024-08-25 16:24:31,713 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:24:31] "[31m[1mGET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6A8uvU HTTP/1.1[0m" 400 -
+2024-08-25 16:24:33,843 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:24:33] "[31m[1mGET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6A8vQn HTTP/1.1[0m" 400 -
+2024-08-25 16:24:36,884 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:24:36] "[31m[1mGET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6A8wAG HTTP/1.1[0m" 400 -
+2024-08-25 16:27:19,725 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-25 16:27:19,725 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-25 16:27:19,726 - werkzeug - INFO -  * Restarting with stat
+2024-08-25 16:27:20,705 - werkzeug - WARNING -  * Debugger is active!
+2024-08-25 16:27:20,721 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-25 16:27:43,564 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:27:43] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:27:43,568 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:27:43] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:27:43,577 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:27:43] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6A9dlL HTTP/1.1" 200 -
+2024-08-25 16:27:43,601 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:27:43] "POST /socket.io/?client_id=1&EIO=4&transport=polling&t=P6A9dlb&sid=ydclxwJZYqncKdrRAAAA HTTP/1.1" 200 -
+2024-08-25 16:27:43,606 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:27:43] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6A9dle&sid=ydclxwJZYqncKdrRAAAA HTTP/1.1" 200 -
+2024-08-25 16:27:47,368 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:27:47] "GET /socket.io/?client_id=1&EIO=4&transport=websocket&sid=ydclxwJZYqncKdrRAAAA HTTP/1.1" 200 -
+2024-08-25 16:32:02,638 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-25 16:32:02,639 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-25 16:32:25,577 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:32:25] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:32:25,589 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:32:25] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:32:25,608 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:32:25] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AAiby HTTP/1.1" 200 -
+2024-08-25 16:32:25,625 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:32:25] "POST /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AAicD&sid=xUT69rW2aPSCO-PlAAAA HTTP/1.1" 200 -
+2024-08-25 16:32:25,640 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:32:25] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AAicF&sid=xUT69rW2aPSCO-PlAAAA HTTP/1.1" 200 -
+2024-08-25 16:32:29,217 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:32:29] "GET /socket.io/?client_id=1&EIO=4&transport=websocket&sid=xUT69rW2aPSCO-PlAAAA HTTP/1.1" 200 -
+2024-08-25 16:33:36,698 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:33:36] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AAzyn HTTP/1.1" 200 -
+2024-08-25 16:33:36,715 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:33:36] "POST /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AAzyz&sid=jRpjYrGDW-Ma93W8AAAB HTTP/1.1" 200 -
+2024-08-25 16:33:36,733 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:33:36] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AAzy_&sid=jRpjYrGDW-Ma93W8AAAB HTTP/1.1" 200 -
+2024-08-25 16:33:47,847 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:33:47] "OPTIONS /api/input_job HTTP/1.1" 200 -
+2024-08-25 16:33:54,046 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:33:54] "GET /socket.io/?client_id=1&EIO=4&transport=websocket&sid=jRpjYrGDW-Ma93W8AAAB HTTP/1.1" 200 -
+2024-08-25 16:35:32,480 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:35:32] "POST /api/input_job HTTP/1.1" 200 -
+2024-08-25 16:40:07,568 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-25 16:40:07,570 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-25 16:40:28,147 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:40:28] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:40:28,158 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:40:28] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:40:28,177 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:40:28] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6ACYQ4 HTTP/1.1" 200 -
+2024-08-25 16:40:28,192 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:40:28] "POST /socket.io/?client_id=1&EIO=4&transport=polling&t=P6ACYQM&sid=qFiK40VeK8syT6ycAAAA HTTP/1.1" 200 -
+2024-08-25 16:40:28,204 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:40:28] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6ACYQP&sid=qFiK40VeK8syT6ycAAAA HTTP/1.1" 200 -
+2024-08-25 16:40:31,987 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:40:31] "GET /socket.io/?client_id=1&EIO=4&transport=websocket&sid=qFiK40VeK8syT6ycAAAA HTTP/1.1" 200 -
+2024-08-25 16:40:41,058 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:40:41] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6ACbZR HTTP/1.1" 200 -
+2024-08-25 16:40:41,067 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:40:41] "POST /socket.io/?client_id=1&EIO=4&transport=polling&t=P6ACbZa&sid=MHyiJiE_0PhmNJG2AAAB HTTP/1.1" 200 -
+2024-08-25 16:40:41,078 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:40:41] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6ACbZc&sid=MHyiJiE_0PhmNJG2AAAB HTTP/1.1" 200 -
+2024-08-25 16:40:50,932 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:40:50] "OPTIONS /api/input_job HTTP/1.1" 200 -
+2024-08-25 16:40:52,527 - app - ERROR - Exception on /api/input_job [POST]
+Traceback (most recent call last):
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask_cors\extension.py", line 178, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_MyWork\Formacao\Python\peripheral-device-manager\app\routes.py", line 94, in create_input_job
+    ws_manager.send_message(sessionid, input_type, job_data)
+  File "C:\_MyWork\Formacao\Python\peripheral-device-manager\app\websocket_manager.py", line 38, in send_message
+    socketio.emit('message', {'type': message_type, 'data': message_data}, room=client_id)
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask_socketio\__init__.py", line 462, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'emit'
+2024-08-25 16:40:52,554 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:40:52] "[35m[1mPOST /api/input_job HTTP/1.1[0m" 500 -
+2024-08-25 16:42:20,038 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.95:5000
+2024-08-25 16:42:20,039 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-25 16:42:20,039 - werkzeug - INFO -  * Restarting with stat
+2024-08-25 16:42:20,555 - werkzeug - WARNING -  * Debugger is active!
+2024-08-25 16:42:20,561 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-25 16:42:22,321 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:42:22] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AC-Hj HTTP/1.1" 200 -
+2024-08-25 16:42:22,335 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:42:22] "POST /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AC-Hq&sid=EwBuSghsLjO2HgK1AAAA HTTP/1.1" 200 -
+2024-08-25 16:42:22,342 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:42:22] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AC-Hv&sid=EwBuSghsLjO2HgK1AAAA HTTP/1.1" 200 -
+2024-08-25 16:43:20,413 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:43:20] "GET /socket.io/?client_id=1&EIO=4&transport=websocket&sid=EwBuSghsLjO2HgK1AAAA HTTP/1.1" 200 -
+2024-08-25 16:43:53,165 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:43:53] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:44:15,308 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:44:15] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:44:15,312 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:44:15] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:44:15,321 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:44:15] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6ADPtK HTTP/1.1" 200 -
+2024-08-25 16:44:15,331 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:44:15] "POST /socket.io/?client_id=1&EIO=4&transport=polling&t=P6ADPtT&sid=TTYm0TBLmqBnG33MAAAB HTTP/1.1" 200 -
+2024-08-25 16:44:15,335 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:44:15] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6ADPtV&sid=TTYm0TBLmqBnG33MAAAB HTTP/1.1" 200 -
+2024-08-25 16:44:30,194 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:44:30] "OPTIONS /api/input_job HTTP/1.1" 200 -
+2024-08-25 16:44:30,206 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:44:30] "[35m[1mPOST /api/input_job HTTP/1.1[0m" 500 -
+2024-08-25 16:47:51,984 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\app\\__init__.py', reloading
+2024-08-25 16:47:52,046 - werkzeug - INFO -  * Restarting with stat
+2024-08-25 16:47:52,685 - werkzeug - WARNING -  * Debugger is active!
+2024-08-25 16:47:52,693 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-25 16:47:54,295 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:47:54] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AEFKn HTTP/1.1" 200 -
+2024-08-25 16:47:54,303 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:47:54] "POST /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AEFKv&sid=j-jiS3j-SJFt8AFCAAAA HTTP/1.1" 200 -
+2024-08-25 16:47:54,305 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:47:54] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AEFKx&sid=j-jiS3j-SJFt8AFCAAAA HTTP/1.1" 200 -
+2024-08-25 16:50:11,247 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-25 16:50:11,250 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-25 16:50:13,305 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:50:13] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AEnGh HTTP/1.1" 200 -
+2024-08-25 16:50:13,318 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:50:13] "POST /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AEnGz&sid=0g98wRwlgYSFZ8xtAAAA HTTP/1.1" 200 -
+2024-08-25 16:50:13,332 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:50:13] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AEnG-&sid=0g98wRwlgYSFZ8xtAAAA HTTP/1.1" 200 -
+2024-08-25 16:50:30,678 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:50:30] "GET /socket.io/?client_id=1&EIO=4&transport=websocket&sid=0g98wRwlgYSFZ8xtAAAA HTTP/1.1" 200 -
+2024-08-25 16:50:42,834 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:50:42] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:50:42,842 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:50:42] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:50:42,855 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:50:42] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AEuUW HTTP/1.1" 200 -
+2024-08-25 16:50:42,869 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:50:42] "POST /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AEuUi&sid=wp9a_U4uqlo03wjhAAAB HTTP/1.1" 200 -
+2024-08-25 16:50:42,882 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:50:42] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AEuUk&sid=wp9a_U4uqlo03wjhAAAB HTTP/1.1" 200 -
+2024-08-25 16:50:58,974 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:50:58] "OPTIONS /api/input_job HTTP/1.1" 200 -
+2024-08-25 16:50:58,981 - app - ERROR - Exception on /api/input_job [POST]
+Traceback (most recent call last):
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask_cors\extension.py", line 178, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_MyWork\Formacao\Python\peripheral-device-manager\app\routes.py", line 94, in create_input_job
+    ws_manager.send_message(sessionid, input_type, job_data)
+  File "C:\_MyWork\Formacao\Python\peripheral-device-manager\app\websocket_manager.py", line 41, in send_message
+    socketio.emit('message', {'type': message_type, 'data': message_data}, room=client_id)
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask_socketio\__init__.py", line 462, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'emit'
+2024-08-25 16:50:58,995 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:50:58] "[35m[1mPOST /api/input_job HTTP/1.1[0m" 500 -
+2024-08-25 16:51:07,026 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:51:07] "GET /socket.io/?client_id=1&EIO=4&transport=websocket&sid=wp9a_U4uqlo03wjhAAAB HTTP/1.1" 200 -
+2024-08-25 16:53:01,061 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:53:01] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:53:21,117 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:53:21] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:53:21,126 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:53:21] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:53:21,143 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:53:21] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AFV7i HTTP/1.1" 200 -
+2024-08-25 16:53:21,157 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:53:21] "POST /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AFV7y&sid=6DCCqhXEqXlGJAwEAAAC HTTP/1.1" 200 -
+2024-08-25 16:53:21,169 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:53:21] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AFV7_&sid=6DCCqhXEqXlGJAwEAAAC HTTP/1.1" 200 -
+2024-08-25 16:53:34,803 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:53:34] "OPTIONS /api/input_job HTTP/1.1" 200 -
+2024-08-25 16:55:05,876 - app - ERROR - Exception on /api/input_job [POST]
+Traceback (most recent call last):
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask_cors\extension.py", line 178, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_MyWork\Formacao\Python\peripheral-device-manager\app\routes.py", line 94, in create_input_job
+    ws_manager.send_message(sessionid, input_type, job_data)
+  File "C:\_MyWork\Formacao\Python\peripheral-device-manager\app\websocket_manager.py", line 41, in send_message
+    socketio.emit('message', {'type': message_type, 'data': message_data}, room=client_id)
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask_socketio\__init__.py", line 462, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'emit'
+2024-08-25 16:55:05,888 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:55:05] "[35m[1mPOST /api/input_job HTTP/1.1[0m" 500 -
+2024-08-25 16:55:13,470 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:55:13] "OPTIONS /api/input_job HTTP/1.1" 200 -
+2024-08-25 16:55:16,582 - app - ERROR - Exception on /api/input_job [POST]
+Traceback (most recent call last):
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask_cors\extension.py", line 178, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_MyWork\Formacao\Python\peripheral-device-manager\app\routes.py", line 94, in create_input_job
+    ws_manager.send_message(sessionid, input_type, job_data)
+  File "C:\_MyWork\Formacao\Python\peripheral-device-manager\app\websocket_manager.py", line 41, in send_message
+    socketio.emit('message', {'type': message_type, 'data': message_data}, room=client_id)
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask_socketio\__init__.py", line 462, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'emit'
+2024-08-25 16:55:16,594 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:55:16] "[35m[1mPOST /api/input_job HTTP/1.1[0m" 500 -
+2024-08-25 16:56:11,410 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.95:5000
+2024-08-25 16:56:11,411 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-25 16:56:11,600 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:56:11] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AG8Qz HTTP/1.1" 200 -
+2024-08-25 16:56:11,606 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:56:11] "POST /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AG8lI&sid=ILbjm_Pg2nBaiY22AAAA HTTP/1.1" 200 -
+2024-08-25 16:56:11,609 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:56:11] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AG8lJ&sid=ILbjm_Pg2nBaiY22AAAA HTTP/1.1" 200 -
+2024-08-25 16:56:20,824 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:56:20] "GET /socket.io/?client_id=1&EIO=4&transport=websocket&sid=ILbjm_Pg2nBaiY22AAAA HTTP/1.1" 200 -
+2024-08-25 16:56:44,656 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:56:44] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:56:44,660 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:56:44] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-25 16:56:44,669 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:56:44] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AGGpv HTTP/1.1" 200 -
+2024-08-25 16:56:44,679 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:56:44] "POST /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AGGq2&sid=c2Wg3f0v5xqhqF9RAAAB HTTP/1.1" 200 -
+2024-08-25 16:56:44,687 - werkzeug - INFO - 127.0.0.1 - - [25/Aug/2024 16:56:44] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6AGGq4&sid=c2Wg3f0v5xqhqF9RAAAB HTTP/1.1" 200 -

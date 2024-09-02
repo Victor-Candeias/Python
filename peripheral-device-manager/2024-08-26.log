@@ -1,0 +1,80 @@
+2024-08-26 21:57:53,862 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-26 21:57:53,864 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-26 22:00:25,758 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:00:25] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-26 22:00:36,521 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:00:36] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-26 22:00:36,541 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:00:36] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6GVPin HTTP/1.1" 200 -
+2024-08-26 22:00:36,561 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:00:36] "POST /socket.io/?client_id=1&EIO=4&transport=polling&t=P6GVPj4&sid=5mRLmsCNndgtiEBIAAAA HTTP/1.1" 200 -
+2024-08-26 22:00:36,578 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:00:36] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6GVPj7&sid=5mRLmsCNndgtiEBIAAAA HTTP/1.1" 200 -
+2024-08-26 22:00:43,284 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:00:43] "GET /socket.io/?client_id=1&EIO=4&transport=websocket&sid=5mRLmsCNndgtiEBIAAAA HTTP/1.1" 200 -
+2024-08-26 22:00:50,639 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:00:50] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6GVT97 HTTP/1.1" 200 -
+2024-08-26 22:00:50,649 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:00:50] "POST /socket.io/?client_id=1&EIO=4&transport=polling&t=P6GVT9I&sid=d2OG7NWY--e9hCjrAAAB HTTP/1.1" 200 -
+2024-08-26 22:00:50,661 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:00:50] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6GVT9J&sid=d2OG7NWY--e9hCjrAAAB HTTP/1.1" 200 -
+2024-08-26 22:00:59,470 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:00:59] "OPTIONS /api/input_job HTTP/1.1" 200 -
+2024-08-26 22:00:59,478 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:00:59] "POST /api/input_job HTTP/1.1" 200 -
+2024-08-26 22:02:22,480 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:02:22] "GET /socket.io/?client_id=1&EIO=4&transport=websocket&sid=d2OG7NWY--e9hCjrAAAB HTTP/1.1" 200 -
+2024-08-26 22:14:04,396 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:14:04] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6GYUxZ HTTP/1.1" 200 -
+2024-08-26 22:14:04,409 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:14:04] "POST /socket.io/?client_id=1&EIO=4&transport=polling&t=P6GYUxl&sid=TnEZ6IIkcTFJPsDyAAAC HTTP/1.1" 200 -
+2024-08-26 22:14:04,422 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:14:04] "GET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6GYUxn&sid=TnEZ6IIkcTFJPsDyAAAC HTTP/1.1" 200 -
+2024-08-26 22:14:18,413 - engineio.server - ERROR - The client is using an unsupported version of the Socket.IO or Engine.IO protocols (further occurrences of this error will be logged with level INFO)
+2024-08-26 22:14:18,415 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:14:18] "[31m[1mGET /socket.io/?client_id=1 HTTP/1.1[0m" 400 -
+2024-08-26 22:14:26,842 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:14:26] "[33mGET /socket.io HTTP/1.1[0m" 404 -
+2024-08-26 22:33:02,586 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.95:5000
+2024-08-26 22:33:02,587 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-26 22:33:02,651 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:33:02] "[33mGET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6GcqWt HTTP/1.1[0m" 404 -
+2024-08-26 22:33:08,372 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:33:08] "[33mGET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6GcsEH HTTP/1.1[0m" 404 -
+2024-08-26 22:33:14,358 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:33:14] "[33mGET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6Gcthp HTTP/1.1[0m" 404 -
+2024-08-26 22:33:20,362 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:33:20] "[33mGET /socket.io/?client_id=1&EIO=4&transport=polling&t=P6Gcv9c HTTP/1.1[0m" 404 -
+2024-08-26 22:33:36,219 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:33:36] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-26 22:33:36,223 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:33:36] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-26 22:33:36,229 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:33:36] "[33mGET /ws/1 HTTP/1.1[0m" 404 -
+2024-08-26 22:33:46,932 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:33:46] "OPTIONS /api/input_job HTTP/1.1" 200 -
+2024-08-26 22:33:46,937 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:33:46] "POST /api/input_job HTTP/1.1" 200 -
+2024-08-26 22:38:18,425 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.95:5000
+2024-08-26 22:38:18,426 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-26 22:38:44,582 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:38:44] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-26 22:38:44,587 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:38:44] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-26 22:38:44,592 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:38:44] "[33mGET /ws/1 HTTP/1.1[0m" 404 -
+2024-08-26 22:38:55,055 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:38:55] "OPTIONS /api/input_job HTTP/1.1" 200 -
+2024-08-26 22:38:55,059 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:38:55] "POST /api/input_job HTTP/1.1" 200 -
+2024-08-26 22:41:46,622 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:41:46] "[33mGET /socket.io HTTP/1.1[0m" 404 -
+2024-08-26 22:43:47,461 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.95:5000
+2024-08-26 22:43:47,462 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-26 22:45:33,426 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:45:33] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-26 22:45:33,430 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:45:33] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-26 22:45:33,437 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:45:33] "[33mGET /ws/1 HTTP/1.1[0m" 404 -
+2024-08-26 22:46:53,397 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:46:53] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-26 22:46:53,401 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:46:53] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-26 22:46:53,408 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:46:53] "[33mGET /ws/1 HTTP/1.1[0m" 404 -
+2024-08-26 22:47:26,518 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:47:26] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-26 22:47:26,522 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:47:26] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-26 22:47:26,528 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:47:26] "[33mGET /ws/1 HTTP/1.1[0m" 404 -
+2024-08-26 22:49:28,989 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.95:5000
+2024-08-26 22:49:28,990 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-26 22:49:57,435 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:49:57] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-26 22:49:57,440 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:49:57] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-26 22:49:57,447 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:49:57] "[33mGET /ws/1 HTTP/1.1[0m" 404 -
+2024-08-26 22:51:33,082 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.95:5000
+2024-08-26 22:51:33,084 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-26 22:52:01,813 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:52:01] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-26 22:55:35,771 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-26 22:55:35,773 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-26 22:56:16,926 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:56:16] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-26 22:56:39,398 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:56:39] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-26 22:56:39,410 - werkzeug - INFO - 127.0.0.1 - - [26/Aug/2024 22:56:39] "[33mGET /ws/1 HTTP/1.1[0m" 404 -

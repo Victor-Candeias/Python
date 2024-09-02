@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REST API Tester</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 4px 0;
+            box-sizing: border-box;
+            height: 150px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 4px 0;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>REST API Tester</h1>
+
+    <div class="form-group">
+        <label for="method">HTTP Method:</label>
+        <select id="method">
+            <option value="GET">GET</option>
+            <option value="POST">POST</option>
+            <option value="PUT">PUT</option>
+            <option value="DELETE">DELETE</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="url">API Endpoint:</label>
+        <input type="text" id="url" placeholder="Enter the API endpoint (e.g., /output-jobs)">
+    </div>
+
+    <div class="form-group">
+        <label for="request-body">Request Body (JSON):</label>
+        <textarea class="textarea" id="request-body" placeholder="Enter JSON data for POST/PUT requests"></textarea>
+    </div>
+
+    <button onclick="sendRequest()">Send Request</button>
+
+    <h2>Response</h2>
+    <pre id="response"></pre>
+
+    <script>
+        function sendRequest() {
+            const method = document.getElementById('method').value;
+            const url = document.getElementById('url').value;
+            const body = document.getElementById('request-body').value;
+
+            const options = {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+
+            if (method === 'POST' || method === 'PUT') {
+                options.body = body;
+            }
+
+            fetch(url, options)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('response').textContent = JSON.stringify(data, null, 4);
+                })
+                .catch(error => {
+                    document.getElementById('response').textContent = 'Error: ' + error.message;
+                });
+        }
+    </script>
+
+</body>
+</html>

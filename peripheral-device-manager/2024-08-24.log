@@ -1,0 +1,103 @@
+2024-08-24 10:55:00,367 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-24 10:55:00,369 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-24 10:55:31,842 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2024 10:55:31] "OPTIONS /api/output_job HTTP/1.1" 200 -
+2024-08-24 10:55:31,851 - controller.output_job_controller - INFO - add_job();data {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'receipt', 'job_mode': 'synchronous', 'date': '2024-08-24'}
+2024-08-24 10:55:31,852 - controller.output_job_controller - INFO - add_job();Job type receipt
+2024-08-24 10:55:31,853 - controller.output_job_controller - INFO - add_job();Job {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'receipt', 'job_mode': 'synchronous', 'date': '2024-08-24', 'status': 'queued', 'job_id': '01ed7fec-ad89-4ae4-bbf9-a5920ddd18e9'}
+2024-08-24 10:55:31,854 - controller.output_job_controller - INFO - add_job();type_of_job receipt
+2024-08-24 10:55:31,854 - controller.output_job_controller - ERROR - No plugin found for job type: receipt
+2024-08-24 10:55:31,856 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2024 10:55:31] "POST /api/output_job HTTP/1.1" 200 -
+2024-08-24 10:55:53,115 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2024 10:55:53] "OPTIONS /api/output_job HTTP/1.1" 200 -
+2024-08-24 11:15:24,239 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-24 11:15:24,241 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-24 11:15:47,391 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2024 11:15:47] "OPTIONS /api/output_job HTTP/1.1" 200 -
+2024-08-24 11:15:52,207 - controller.output_job_controller - INFO - add_job();data {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'receipt', 'job_mode': 'synchronous', 'date': '2024-08-24'}
+2024-08-24 11:15:52,588 - controller.output_job_controller - INFO - add_job();Job type receipt
+2024-08-24 11:15:54,749 - controller.output_job_controller - INFO - add_job();Job {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'receipt', 'job_mode': 'synchronous', 'date': '2024-08-24', 'status': 'queued', 'job_id': '5dacf839-bae1-46cd-a66f-5853ed4531ec'}
+2024-08-24 11:16:11,628 - app - ERROR - Exception on /api/output_job [POST]
+Traceback (most recent call last):
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask_cors\extension.py", line 178, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_MyWork\Formacao\Python\peripheral-device-manager\app\routes.py", line 26, in create_output
+    job_id = output_job_controller.add_job(data)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_MyWork\Formacao\Python\peripheral-device-manager\controller\output_job_controller.py", line 30, in add_job
+    plugin.queue_job(job)
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'ReceiptPlugin' object has no attribute 'queue_job'
+2024-08-24 11:16:11,659 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2024 11:16:11] "[35m[1mPOST /api/output_job HTTP/1.1[0m" 500 -
+2024-08-24 11:27:19,002 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-24 11:27:19,003 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-24 11:27:37,212 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2024 11:27:37] "OPTIONS /api/output_job HTTP/1.1" 200 -
+2024-08-24 11:27:41,829 - controller.output_job_controller - INFO - add_job();data {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'receipt', 'job_mode': 'synchronous', 'date': '2024-08-24'}
+2024-08-24 11:27:42,264 - controller.output_job_controller - INFO - add_job();Job type receipt
+2024-08-24 11:27:43,842 - controller.output_job_controller - INFO - add_job();Job {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'receipt', 'job_mode': 'synchronous', 'date': '2024-08-24', 'status': 'queued', 'job_id': 'e2aa6888-5221-4fad-9c42-703beab2fc61'}
+2024-08-24 11:27:46,792 - controller.output_job_controller - INFO - Processing job e2aa6888-5221-4fad-9c42-703beab2fc61 with plugin receipt
+2024-08-24 11:27:48,791 - controller.output_job_controller - INFO - Job e2aa6888-5221-4fad-9c42-703beab2fc61 completed with result: Receipt Job e2aa6888-5221-4fad-9c42-703beab2fc61 processed successfully
+2024-08-24 11:27:48,795 - controller.output_job_controller - INFO - Processing job e2aa6888-5221-4fad-9c42-703beab2fc61 with plugin receipt
+2024-08-24 11:27:48,796 - controller.output_job_controller - INFO - Job e2aa6888-5221-4fad-9c42-703beab2fc61 completed with result: Receipt Job e2aa6888-5221-4fad-9c42-703beab2fc61 processed successfully
+2024-08-24 11:27:53,481 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2024 11:27:53] "POST /api/output_job HTTP/1.1" 200 -
+2024-08-24 11:38:46,638 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2024 11:38:46] "OPTIONS /api/output_job HTTP/1.1" 200 -
+2024-08-24 11:41:43,574 - controller.output_job_controller - INFO - add_job();data {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'receipt', 'job_mode': 'synchronous', 'date': '2024-08-24'}
+2024-08-24 11:41:44,778 - controller.output_job_controller - INFO - add_job();Job type receipt
+2024-08-24 11:41:47,152 - controller.output_job_controller - INFO - add_job();Job {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'receipt', 'job_mode': 'synchronous', 'date': '2024-08-24', 'status': 'queued', 'job_id': 'eb67fe36-e1da-4d66-8eb6-3550cfcb06c0'}
+2024-08-24 11:41:50,681 - controller.output_job_controller - INFO - Processing job eb67fe36-e1da-4d66-8eb6-3550cfcb06c0 with plugin receipt
+2024-08-24 11:41:50,682 - controller.output_job_controller - INFO - Job eb67fe36-e1da-4d66-8eb6-3550cfcb06c0 completed with result: Receipt Job eb67fe36-e1da-4d66-8eb6-3550cfcb06c0 processed successfully
+2024-08-24 11:41:51,786 - controller.output_job_controller - INFO - Processing job eb67fe36-e1da-4d66-8eb6-3550cfcb06c0 with plugin receipt
+2024-08-24 11:41:51,787 - controller.output_job_controller - INFO - Job eb67fe36-e1da-4d66-8eb6-3550cfcb06c0 completed with result: Receipt Job eb67fe36-e1da-4d66-8eb6-3550cfcb06c0 processed successfully
+2024-08-24 11:42:38,687 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2024 11:42:38] "POST /api/output_job HTTP/1.1" 200 -
+2024-08-24 11:42:42,484 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2024 11:42:42] "OPTIONS /api/output_job HTTP/1.1" 200 -
+2024-08-24 11:42:46,607 - controller.output_job_controller - INFO - add_job();data {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'receipt', 'job_mode': 'synchronous', 'date': '2024-08-24'}
+2024-08-24 11:42:46,822 - controller.output_job_controller - INFO - add_job();Job type receipt
+2024-08-24 11:42:53,450 - controller.output_job_controller - INFO - add_job();Job {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'receipt', 'job_mode': 'synchronous', 'date': '2024-08-24', 'status': 'queued', 'job_id': '6b51c598-f440-482d-ae9a-cffd113e55e6'}
+2024-08-24 11:42:54,472 - controller.output_job_controller - INFO - Processing job 6b51c598-f440-482d-ae9a-cffd113e55e6 with plugin receipt
+2024-08-24 11:42:54,474 - controller.output_job_controller - INFO - Job 6b51c598-f440-482d-ae9a-cffd113e55e6 completed with result: Receipt Job 6b51c598-f440-482d-ae9a-cffd113e55e6 processed successfully
+2024-08-24 11:43:14,835 - controller.output_job_controller - INFO - Processing job 6b51c598-f440-482d-ae9a-cffd113e55e6 with plugin receipt
+2024-08-24 11:43:14,835 - controller.output_job_controller - INFO - Job 6b51c598-f440-482d-ae9a-cffd113e55e6 completed with result: Receipt Job 6b51c598-f440-482d-ae9a-cffd113e55e6 processed successfully
+2024-08-24 11:43:14,839 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2024 11:43:14] "POST /api/output_job HTTP/1.1" 200 -
+2024-08-24 11:43:53,966 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-24 11:43:53,969 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-24 11:44:05,720 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2024 11:44:05] "OPTIONS /api/output_job HTTP/1.1" 200 -
+2024-08-24 11:44:11,638 - controller.output_job_controller - INFO - add_job();data {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'receipt', 'job_mode': 'synchronous', 'date': '2024-08-24'}
+2024-08-24 11:44:11,904 - controller.output_job_controller - INFO - add_job();Job type receipt
+2024-08-24 11:44:13,809 - controller.output_job_controller - INFO - add_job();Job {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'receipt', 'job_mode': 'synchronous', 'date': '2024-08-24', 'status': 'queued', 'job_id': '5f821148-0726-4ad1-80d2-ed82ff545f86'}
+2024-08-24 11:44:15,727 - controller.output_job_controller - INFO - Processing job 5f821148-0726-4ad1-80d2-ed82ff545f86 with plugin receipt
+2024-08-24 11:44:17,395 - controller.output_job_controller - INFO - Job 5f821148-0726-4ad1-80d2-ed82ff545f86 completed with result: Receipt Job 5f821148-0726-4ad1-80d2-ed82ff545f86 processed successfully
+2024-08-24 11:44:17,401 - controller.output_job_controller - INFO - Processing job 5f821148-0726-4ad1-80d2-ed82ff545f86 with plugin receipt
+2024-08-24 11:44:17,402 - controller.output_job_controller - INFO - Job 5f821148-0726-4ad1-80d2-ed82ff545f86 completed with result: Receipt Job 5f821148-0726-4ad1-80d2-ed82ff545f86 processed successfully
+2024-08-24 11:56:35,680 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-24 11:56:35,681 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-24 11:56:53,263 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2024 11:56:53] "OPTIONS /api/output_job HTTP/1.1" 200 -
+2024-08-24 11:56:57,970 - controller.output_job_controller - INFO - add_job();data {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'receipt', 'job_mode': 'synchronous', 'date': '2024-08-24'}
+2024-08-24 11:56:58,278 - controller.output_job_controller - INFO - add_job();Job type receipt
+2024-08-24 11:57:01,179 - controller.output_job_controller - INFO - add_job();Job {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'receipt', 'job_mode': 'synchronous', 'date': '2024-08-24', 'status': 'queued', 'job_id': 'b3fd9cea-9252-46c3-99cd-bb15011dd296'}
+2024-08-24 11:57:08,244 - controller.output_job_controller - INFO - Processing job b3fd9cea-9252-46c3-99cd-bb15011dd296 with plugin receipt
+2024-08-24 11:57:08,245 - controller.output_job_controller - INFO - Job b3fd9cea-9252-46c3-99cd-bb15011dd296 completed with result: {'status': '200'}
+2024-08-24 11:57:09,112 - controller.output_job_controller - INFO - Processing job b3fd9cea-9252-46c3-99cd-bb15011dd296 with plugin receipt
+2024-08-24 11:57:09,113 - controller.output_job_controller - INFO - Job b3fd9cea-9252-46c3-99cd-bb15011dd296 completed with result: {'status': '200'}
+2024-08-24 11:57:12,080 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2024 11:57:12] "POST /api/output_job HTTP/1.1" 200 -
+2024-08-24 11:57:34,642 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2024 11:57:34] "OPTIONS /api/output_job HTTP/1.1" 200 -
+2024-08-24 11:57:37,854 - controller.output_job_controller - INFO - add_job();data {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'receipt', 'job_mode': 'asynchronous', 'date': '2024-08-24'}
+2024-08-24 11:57:38,045 - controller.output_job_controller - INFO - add_job();Job type receipt
+2024-08-24 11:57:39,327 - controller.output_job_controller - INFO - add_job();Job {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'receipt', 'job_mode': 'asynchronous', 'date': '2024-08-24', 'status': 'queued', 'job_id': 'e3082752-e998-4eb3-bd42-7f0d66d590da'}
+2024-08-24 11:57:40,379 - controller.output_job_controller - INFO - Processing job e3082752-e998-4eb3-bd42-7f0d66d590da with plugin receipt
+2024-08-24 11:57:40,380 - controller.output_job_controller - INFO - Job e3082752-e998-4eb3-bd42-7f0d66d590da completed with result: {'status': '200'}
+2024-08-24 11:57:47,166 - werkzeug - INFO - 127.0.0.1 - - [24/Aug/2024 11:57:47] "POST /api/output_job HTTP/1.1" 200 -

@@ -1,0 +1,141 @@
+2024-08-23 19:29:48,304 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-23 19:29:48,305 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-23 19:29:48,306 - werkzeug - INFO -  * Restarting with stat
+2024-08-23 19:29:48,698 - werkzeug - WARNING -  * Debugger is active!
+2024-08-23 19:29:48,706 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-23 19:30:09,580 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 19:30:09] "OPTIONS /api/output_job HTTP/1.1" 200 -
+2024-08-23 19:30:09,584 - controller.output_job_controller - INFO - Job 6c944056-9aba-482f-b381-7a7de2d9436d added to queue
+2024-08-23 19:30:09,585 - controller.output_job_controller - ERROR - No plugin found for job type: receipt
+2024-08-23 19:30:09,585 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 19:30:09] "POST /api/output_job HTTP/1.1" 200 -
+2024-08-23 19:30:14,546 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 19:30:14] "OPTIONS /api/output_jobs?machineid=1&sessionid=1 HTTP/1.1" 200 -
+2024-08-23 19:30:14,551 - controller.output_job_controller - INFO - Listing jobs for machine 1 and session 1
+2024-08-23 19:30:14,552 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 19:30:14] "GET /api/output_jobs?machineid=1&sessionid=1 HTTP/1.1" 200 -
+2024-08-23 19:30:23,842 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 19:30:23] "OPTIONS /api/output_job HTTP/1.1" 200 -
+2024-08-23 19:30:23,846 - controller.output_job_controller - WARNING - Job 6c944056-9aba-482f-b381-7a7de2d9436d already started or completed
+2024-08-23 19:30:23,847 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 19:30:23] "DELETE /api/output_job HTTP/1.1" 200 -
+2024-08-23 19:30:27,522 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 19:30:27] "OPTIONS /api/event_channel HTTP/1.1" 200 -
+2024-08-23 19:30:27,526 - controller.device_controller - INFO - Created event channel: 6c9eeda7-84e8-4e3c-92de-4ee8f35ec13f for machine 1
+2024-08-23 19:30:27,527 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 19:30:27] "POST /api/event_channel HTTP/1.1" 200 -
+2024-08-23 19:30:29,026 - controller.device_controller - INFO - Listing all devices
+2024-08-23 19:30:29,026 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 19:30:29] "GET /api/devices HTTP/1.1" 200 -
+2024-08-23 19:30:34,066 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 19:30:34] "OPTIONS /api/input_job HTTP/1.1" 200 -
+2024-08-23 19:30:34,070 - controller.device_controller - INFO - Created input job: 12acca2a-92c5-4adf-b57d-44e8360200b1 with data: {'machineid': '1', 'sessionid': '1', 'input_type': 'scale', 'value': '1', 'unit': '1'}
+2024-08-23 19:30:34,071 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 19:30:34] "POST /api/input_job HTTP/1.1" 200 -
+2024-08-23 19:32:06,256 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\controller\\outputPlugins\\plugin_base.py', reloading
+2024-08-23 19:32:06,302 - werkzeug - INFO -  * Restarting with stat
+2024-08-23 19:32:06,722 - werkzeug - WARNING -  * Debugger is active!
+2024-08-23 19:32:06,730 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-23 19:32:17,791 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\controller\\outputPlugins\\receipt_plugin.py', reloading
+2024-08-23 19:32:17,835 - werkzeug - INFO -  * Restarting with stat
+2024-08-23 19:32:18,274 - werkzeug - WARNING -  * Debugger is active!
+2024-08-23 19:32:18,281 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-23 19:32:24,325 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\controller\\outputPlugins\\receipt_plugin.py', reloading
+2024-08-23 19:32:24,396 - werkzeug - INFO -  * Restarting with stat
+2024-08-23 19:32:24,874 - werkzeug - WARNING -  * Debugger is active!
+2024-08-23 19:32:24,881 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-23 19:32:36,968 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\controller\\outputPlugins\\label_plugin.py', reloading
+2024-08-23 19:32:37,024 - werkzeug - INFO -  * Restarting with stat
+2024-08-23 19:32:37,490 - werkzeug - WARNING -  * Debugger is active!
+2024-08-23 19:32:37,498 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-23 19:32:48,560 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\controller\\output_job_controller.py', reloading
+2024-08-23 19:32:48,641 - werkzeug - INFO -  * Restarting with stat
+2024-08-23 19:32:49,105 - werkzeug - WARNING -  * Debugger is active!
+2024-08-23 19:32:49,111 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-23 19:32:53,968 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-23 19:32:53,969 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-23 19:32:53,972 - werkzeug - INFO -  * Restarting with stat
+2024-08-23 19:32:54,370 - werkzeug - WARNING -  * Debugger is active!
+2024-08-23 19:32:54,378 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-23 19:33:11,842 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 19:33:11] "OPTIONS /api/output_job HTTP/1.1" 200 -
+2024-08-23 19:33:11,846 - controller.output_job_controller - ERROR - No plugin found for job type: receipt
+2024-08-23 19:33:11,847 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 19:33:11] "POST /api/output_job HTTP/1.1" 200 -
+2024-08-23 21:00:47,595 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-23 21:00:47,597 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-23 21:00:47,598 - werkzeug - INFO -  * Restarting with stat
+2024-08-23 21:00:48,018 - werkzeug - WARNING -  * Debugger is active!
+2024-08-23 21:00:48,024 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-23 21:01:05,776 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 21:01:05] "OPTIONS /api/output_job HTTP/1.1" 200 -
+2024-08-23 21:01:05,780 - controller.output_job_controller - ERROR - No plugin found for job type: receipt
+2024-08-23 21:01:05,781 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 21:01:05] "POST /api/output_job HTTP/1.1" 200 -
+2024-08-23 21:02:42,586 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\controller\\output_job_controller.py', reloading
+2024-08-23 21:02:42,622 - werkzeug - INFO -  * Restarting with stat
+2024-08-23 21:02:43,031 - werkzeug - WARNING -  * Debugger is active!
+2024-08-23 21:02:43,037 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-23 21:02:49,991 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 21:02:49] "OPTIONS /api/output_job HTTP/1.1" 200 -
+2024-08-23 21:02:49,996 - controller.output_job_controller - ERROR - No plugin found for job type: receipt
+2024-08-23 21:02:49,996 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 21:02:49] "POST /api/output_job HTTP/1.1" 200 -
+2024-08-23 21:03:01,232 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 21:03:01] "OPTIONS /api/output_job HTTP/1.1" 200 -
+2024-08-23 21:03:01,235 - controller.output_job_controller - ERROR - No plugin found for job type: receipt
+2024-08-23 21:03:01,236 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 21:03:01] "POST /api/output_job HTTP/1.1" 200 -
+2024-08-23 21:05:13,614 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\controller\\output_job_controller.py', reloading
+2024-08-23 21:05:13,657 - werkzeug - INFO -  * Restarting with stat
+2024-08-23 21:05:14,145 - werkzeug - WARNING -  * Debugger is active!
+2024-08-23 21:05:14,151 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-23 21:05:26,824 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 21:05:26] "OPTIONS /api/output_job HTTP/1.1" 200 -
+2024-08-23 21:05:26,828 - controller.output_job_controller - INFO - Job type receipt
+2024-08-23 21:05:26,829 - controller.output_job_controller - ERROR - No plugin found for job type: receipt
+2024-08-23 21:05:26,829 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 21:05:26] "POST /api/output_job HTTP/1.1" 200 -
+2024-08-23 21:26:02,703 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\controller\\output_job_controller.py', reloading
+2024-08-23 21:26:02,765 - werkzeug - INFO -  * Restarting with stat
+2024-08-23 21:26:03,282 - werkzeug - WARNING -  * Debugger is active!
+2024-08-23 21:26:03,289 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-23 21:26:09,114 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-23 21:26:09,115 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-23 21:26:09,118 - werkzeug - INFO -  * Restarting with stat
+2024-08-23 21:26:09,484 - werkzeug - WARNING -  * Debugger is active!
+2024-08-23 21:26:09,491 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-23 21:26:44,571 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 21:26:44] "OPTIONS /api/output_job HTTP/1.1" 200 -
+2024-08-23 21:26:44,575 - controller.output_job_controller - INFO - add_job();data {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'receipt', 'job_mode': 'synchronous', 'date': '2024-08-23'}
+2024-08-23 21:26:44,602 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 21:26:44] "[35m[1mPOST /api/output_job HTTP/1.1[0m" 500 -
+2024-08-23 21:29:28,358 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\controller\\output_job_controller.py', reloading
+2024-08-23 21:29:28,401 - werkzeug - INFO -  * Restarting with stat
+2024-08-23 21:29:28,801 - werkzeug - WARNING -  * Debugger is active!
+2024-08-23 21:29:28,807 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-23 21:30:25,035 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\controller\\output_job_controller.py', reloading
+2024-08-23 21:30:25,081 - werkzeug - INFO -  * Restarting with stat
+2024-08-23 21:30:25,496 - werkzeug - WARNING -  * Debugger is active!
+2024-08-23 21:30:25,502 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-23 21:30:27,525 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\controller\\output_job_controller.py', reloading
+2024-08-23 21:30:27,573 - werkzeug - INFO -  * Restarting with stat
+2024-08-23 21:30:28,024 - werkzeug - WARNING -  * Debugger is active!
+2024-08-23 21:30:28,033 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-23 21:30:34,126 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-23 21:30:34,126 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-23 21:30:34,128 - werkzeug - INFO -  * Restarting with stat
+2024-08-23 21:30:34,551 - werkzeug - WARNING -  * Debugger is active!
+2024-08-23 21:30:34,557 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-23 21:30:49,388 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 21:30:49] "OPTIONS /api/output_job HTTP/1.1" 200 -
+2024-08-23 21:30:49,393 - controller.output_job_controller - INFO - add_job();data {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'receipt', 'job_mode': 'synchronous', 'date': '2024-08-23'}
+2024-08-23 21:30:49,393 - controller.output_job_controller - INFO - add_job();Job type receipt
+2024-08-23 21:30:49,393 - controller.output_job_controller - INFO - add_job();Job {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'receipt', 'job_mode': 'synchronous', 'date': '2024-08-23', 'status': 'queued', 'job_id': '2d2b37a2-219d-4912-8df9-784bb61f61a1'}
+2024-08-23 21:30:49,394 - controller.output_job_controller - ERROR - No plugin found for job type: receipt
+2024-08-23 21:30:49,395 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 21:30:49] "POST /api/output_job HTTP/1.1" 200 -
+2024-08-23 21:31:54,896 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\controller\\output_job_controller.py', reloading
+2024-08-23 21:31:54,931 - werkzeug - INFO -  * Restarting with stat
+2024-08-23 21:31:55,360 - werkzeug - WARNING -  * Debugger is active!
+2024-08-23 21:31:55,366 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-23 21:32:06,420 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 21:32:06] "OPTIONS /api/output_job HTTP/1.1" 200 -
+2024-08-23 21:32:06,425 - controller.output_job_controller - INFO - add_job();data {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'receipt', 'job_mode': 'synchronous', 'date': '2024-08-23'}
+2024-08-23 21:32:06,426 - controller.output_job_controller - INFO - add_job();Job type receipt
+2024-08-23 21:32:06,426 - controller.output_job_controller - INFO - add_job();Job {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'receipt', 'job_mode': 'synchronous', 'date': '2024-08-23', 'status': 'queued', 'job_id': '4c22af66-5400-4ba6-9a9b-6200443eb259'}
+2024-08-23 21:32:06,427 - controller.output_job_controller - INFO - add_job();type_of_job receipt
+2024-08-23 21:32:06,427 - controller.output_job_controller - ERROR - No plugin found for job type: receipt
+2024-08-23 21:32:06,428 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 21:32:06] "POST /api/output_job HTTP/1.1" 200 -
+2024-08-23 21:37:50,866 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\controller\\outputPlugins\\label_plugin.py', reloading
+2024-08-23 21:37:50,939 - werkzeug - INFO -  * Restarting with stat
+2024-08-23 21:37:51,434 - werkzeug - WARNING -  * Debugger is active!
+2024-08-23 21:37:51,440 - werkzeug - INFO -  * Debugger PIN: 120-668-994
+2024-08-23 21:38:13,714 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 21:38:13] "OPTIONS /api/output_job HTTP/1.1" 200 -
+2024-08-23 21:38:13,719 - controller.output_job_controller - INFO - add_job();data {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'label', 'job_mode': 'synchronous', 'date': '2024-08-23'}
+2024-08-23 21:38:13,719 - controller.output_job_controller - INFO - add_job();Job type label
+2024-08-23 21:38:13,719 - controller.output_job_controller - INFO - add_job();Job {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'label', 'job_mode': 'synchronous', 'date': '2024-08-23', 'status': 'queued', 'job_id': '8d49d170-c146-4135-b423-26565704c9e8'}
+2024-08-23 21:38:13,720 - controller.output_job_controller - INFO - add_job();type_of_job label
+2024-08-23 21:38:13,720 - controller.output_job_controller - ERROR - No plugin found for job type: label
+2024-08-23 21:38:13,721 - werkzeug - INFO - 127.0.0.1 - - [23/Aug/2024 21:38:13] "POST /api/output_job HTTP/1.1" 200 -
+2024-08-23 22:27:35,110 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\controller\\output_job_controller.py', reloading
+2024-08-23 22:27:35,155 - werkzeug - INFO -  * Restarting with stat

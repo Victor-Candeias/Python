@@ -1,0 +1,364 @@
+2024-08-28 15:09:55,190 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.95:5000
+2024-08-28 15:09:55,191 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-28 15:10:33,515 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 15:10:33] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-28 15:10:33,527 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 15:10:33] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-28 15:10:54,902 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 15:10:54] "[33mGET /ws/1 HTTP/1.1[0m" 404 -
+2024-08-28 15:16:36,383 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.95:5000
+2024-08-28 15:16:36,385 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-28 15:28:01,592 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 15:28:01] "[33mGET /1/get_event_channel HTTP/1.1[0m" 404 -
+2024-08-28 15:28:37,052 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 15:28:37] "[33mGET /1/get_event_channel HTTP/1.1[0m" 404 -
+2024-08-28 15:32:31,637 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.95:5000
+2024-08-28 15:32:31,637 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-28 15:34:55,349 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 15:34:55] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-28 15:34:55,353 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 15:34:55] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-28 15:37:42,197 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.95:5000
+2024-08-28 15:37:42,198 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-28 15:38:38,071 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 15:38:38] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-28 15:38:38,081 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 15:38:38] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-28 15:39:03,963 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.95:5000
+2024-08-28 15:39:03,965 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-28 15:40:20,641 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-28 15:40:20,665 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-28 15:40:20,672 - werkzeug - INFO -  * Restarting with stat
+2024-08-28 15:40:39,880 - werkzeug - WARNING -  * Debugger is active!
+2024-08-28 15:40:39,893 - werkzeug - INFO -  * Debugger PIN: 141-321-799
+2024-08-28 15:40:40,037 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 15:40:40] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-28 15:44:43,653 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\app\\routes.py', reloading
+2024-08-28 15:44:48,418 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 15:44:48] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-28 15:45:05,010 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-28 15:45:05,012 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-28 15:45:05,017 - werkzeug - INFO -  * Restarting with stat
+2024-08-28 15:45:16,869 - werkzeug - WARNING -  * Debugger is active!
+2024-08-28 15:45:16,880 - werkzeug - INFO -  * Debugger PIN: 141-321-799
+2024-08-28 15:45:16,955 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 15:45:16] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-28 16:02:30,558 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 16:02:30] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-28 16:03:28,357 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.95:5000
+2024-08-28 16:03:28,358 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-28 16:03:48,585 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 16:03:48] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-28 16:03:48,590 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 16:03:48] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-28 16:03:48,596 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 16:03:48] "[33mGET /ws/1 HTTP/1.1[0m" 404 -
+2024-08-28 16:07:28,673 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 16:07:28] "OPTIONS /api/output_job HTTP/1.1" 200 -
+2024-08-28 16:10:49,411 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.95:5000
+2024-08-28 16:10:49,412 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-28 16:12:21,171 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.95:5000
+2024-08-28 16:12:21,173 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-28 16:15:43,520 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 16:15:43] "OPTIONS /api/output_job HTTP/1.1" 200 -
+2024-08-28 16:15:43,524 - controller.output_job_controller - INFO - add_job();data {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'receipt', 'job_mode': 'synchronous', 'date': '2024-08-28'}
+2024-08-28 16:15:43,524 - controller.output_job_controller - INFO - add_job();Job type receipt
+2024-08-28 16:15:43,525 - controller.output_job_controller - INFO - add_job();Job {'machineid': '1', 'sessionid': '1', 'userinfo': '1', 'ticket_id': '1', 'type_of_job': 'receipt', 'job_mode': 'synchronous', 'date': '2024-08-28', 'status': 'queued', 'job_id': 'e7547b04-62fc-47e8-891e-0264f221d66e'}
+2024-08-28 16:15:43,526 - controller.output_job_controller - INFO - Processing job e7547b04-62fc-47e8-891e-0264f221d66e with plugin receipt
+2024-08-28 16:15:43,526 - controller.output_job_controller - INFO - Processing job e7547b04-62fc-47e8-891e-0264f221d66e with plugin receipt
+2024-08-28 16:15:43,526 - controller.output_job_controller - INFO - Job e7547b04-62fc-47e8-891e-0264f221d66e completed with result: {'status': '200'}
+2024-08-28 16:15:43,527 - controller.output_job_controller - INFO - Job e7547b04-62fc-47e8-891e-0264f221d66e completed with result: {'status': '200'}
+2024-08-28 16:15:43,527 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 16:15:43] "POST /api/output_job HTTP/1.1" 200 -
+2024-08-28 16:16:05,206 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 16:16:05] "OPTIONS /api/output_job HTTP/1.1" 200 -
+2024-08-28 16:16:05,210 - controller.output_job_controller - INFO - add_job();data {'machineid': '2', 'sessionid': '2', 'userinfo': '2', 'ticket_id': '2', 'type_of_job': 'receipt', 'job_mode': 'asynchronous', 'date': '2024-08-28'}
+2024-08-28 16:16:05,210 - controller.output_job_controller - INFO - add_job();Job type receipt
+2024-08-28 16:16:05,211 - controller.output_job_controller - INFO - add_job();Job {'machineid': '2', 'sessionid': '2', 'userinfo': '2', 'ticket_id': '2', 'type_of_job': 'receipt', 'job_mode': 'asynchronous', 'date': '2024-08-28', 'status': 'queued', 'job_id': '4962e45c-7906-4b73-b64d-da56a49172bf'}
+2024-08-28 16:16:05,212 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 16:16:05] "POST /api/output_job HTTP/1.1" 200 -
+2024-08-28 16:16:05,212 - controller.output_job_controller - INFO - Processing job 4962e45c-7906-4b73-b64d-da56a49172bf with plugin receipt
+2024-08-28 16:16:05,214 - controller.output_job_controller - INFO - end_asynchronous_job(); Job 4962e45c-7906-4b73-b64d-da56a49172bf completed with result: {'status': '200'}
+2024-08-28 16:21:31,525 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 16:21:31] "OPTIONS /api/output_jobs?machineid=1&sessionid=1 HTTP/1.1" 200 -
+2024-08-28 16:21:31,530 - controller.output_job_controller - INFO - Listing jobs for machine 1 and session 1
+2024-08-28 16:21:31,531 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 16:21:31] "GET /api/output_jobs?machineid=1&sessionid=1 HTTP/1.1" 200 -
+2024-08-28 16:21:35,317 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 16:21:35] "OPTIONS /api/output_jobs?machineid=2&sessionid=2 HTTP/1.1" 200 -
+2024-08-28 16:21:35,320 - controller.output_job_controller - INFO - Listing jobs for machine 2 and session 2
+2024-08-28 16:21:35,321 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 16:21:35] "GET /api/output_jobs?machineid=2&sessionid=2 HTTP/1.1" 200 -
+2024-08-28 16:21:38,254 - controller.device_controller - INFO - Listing all devices
+2024-08-28 16:21:38,255 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 16:21:38] "GET /api/devices HTTP/1.1" 200 -
+2024-08-28 16:49:06,929 - controller.device_controller - INFO - Listing all devices
+2024-08-28 16:49:06,930 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 16:49:06] "GET /api/devices HTTP/1.1" 200 -
+2024-08-28 17:10:35,632 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.95:5000
+2024-08-28 17:10:35,634 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-28 17:12:18,876 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.95:5000
+2024-08-28 17:12:18,877 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-28 17:12:26,957 - app - ERROR - Exception on /api/devices [GET]
+Traceback (most recent call last):
+  File "C:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask_cors\extension.py", line 178, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_MyWork\Formacao\Python\peripheral-device-manager\app\routes.py", line 125, in devices
+    devices_list += input_job_controller.list_all_plugins()
+TypeError: unsupported operand type(s) for +=: 'dict' and 'dict'
+2024-08-28 17:12:26,975 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:12:26] "[35m[1mGET /api/devices HTTP/1.1[0m" 500 -
+2024-08-28 17:14:18,540 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-08-28 17:14:18,541 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-28 17:14:18,548 - werkzeug - INFO -  * Restarting with stat
+2024-08-28 17:14:22,508 - werkzeug - WARNING -  * Debugger is active!
+2024-08-28 17:14:22,524 - werkzeug - INFO -  * Debugger PIN: 141-321-799
+2024-08-28 17:15:48,018 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\controller\\output_job_controller.py', reloading
+2024-08-28 17:15:54,742 - app - ERROR - Exception on /api/devices [GET]
+Traceback (most recent call last):
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask_cors\extension.py", line 178, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_MyWork\Formacao\Python\peripheral-device-manager\app\routes.py", line 125, in devices
+    devices_list += input_job_controller.list_all_plugins()
+TypeError: unsupported operand type(s) for +=: 'builtin_function_or_method' and 'builtin_function_or_method'
+2024-08-28 17:15:54,757 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:15:54] "[35m[1mGET /api/devices HTTP/1.1[0m" 500 -
+2024-08-28 17:15:55,613 - werkzeug - INFO -  * Restarting with stat
+2024-08-28 17:16:02,250 - werkzeug - WARNING -  * Debugger is active!
+2024-08-28 17:16:02,261 - werkzeug - INFO -  * Debugger PIN: 141-321-799
+2024-08-28 17:17:19,441 - controller.output_job_controller - INFO - _register_all_plugins();plugin label
+2024-08-28 17:17:19,442 - controller.output_job_controller - INFO - _register_all_plugins();plugin receipt
+2024-08-28 17:17:19,445 - app - ERROR - Exception on /api/devices [GET]
+Traceback (most recent call last):
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask_cors\extension.py", line 178, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_MyWork\Formacao\Python\peripheral-device-manager\app\routes.py", line 125, in devices
+    devices_list += input_job_controller.list_all_plugins()
+TypeError: unsupported operand type(s) for +=: 'builtin_function_or_method' and 'builtin_function_or_method'
+2024-08-28 17:17:19,465 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:17:19] "[35m[1mGET /api/devices HTTP/1.1[0m" 500 -
+2024-08-28 17:18:15,331 - controller.output_job_controller - INFO - _register_all_plugins();plugin label
+2024-08-28 17:18:21,139 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\controller\\output_job_controller.py', reloading
+2024-08-28 17:18:27,803 - controller.output_job_controller - INFO - _register_all_plugins();plugin receipt
+2024-08-28 17:18:58,939 - app - ERROR - Exception on /api/devices [GET]
+Traceback (most recent call last):
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask_cors\extension.py", line 178, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_MyWork\Formacao\Python\peripheral-device-manager\app\routes.py", line 125, in devices
+    devices_list += input_job_controller.list_all_plugins()
+TypeError: unsupported operand type(s) for +=: 'builtin_function_or_method' and 'builtin_function_or_method'
+2024-08-28 17:18:58,944 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:18:58] "[35m[1mGET /api/devices HTTP/1.1[0m" 500 -
+2024-08-28 17:18:59,504 - werkzeug - INFO -  * Restarting with stat
+2024-08-28 17:19:03,185 - werkzeug - WARNING -  * Debugger is active!
+2024-08-28 17:19:03,197 - werkzeug - INFO -  * Debugger PIN: 141-321-799
+2024-08-28 17:20:32,761 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\controller\\output_job_controller.py', reloading
+2024-08-28 17:20:37,316 - app - ERROR - Exception on /api/devices [GET]
+Traceback (most recent call last):
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask_cors\extension.py", line 178, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_MyWork\Formacao\Python\peripheral-device-manager\app\routes.py", line 124, in devices
+    devices_list = output_job_controller.list_all_plugins()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_MyWork\Formacao\Python\peripheral-device-manager\controller\output_job_controller.py", line 117, in list_all_plugins
+    result.append(plugin)
+    ^^^^^^^^^^^^^^
+TypeError: list indices must be integers or slices, not str
+2024-08-28 17:20:37,343 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:20:37] "[35m[1mGET /api/devices HTTP/1.1[0m" 500 -
+2024-08-28 17:20:38,185 - werkzeug - INFO -  * Restarting with stat
+2024-08-28 17:20:41,709 - werkzeug - WARNING -  * Debugger is active!
+2024-08-28 17:20:41,721 - werkzeug - INFO -  * Debugger PIN: 141-321-799
+2024-08-28 17:21:06,493 - controller.output_job_controller - INFO - _register_all_plugins();plugin label
+2024-08-28 17:21:11,379 - controller.output_job_controller - INFO - _register_all_plugins();plugin receipt
+2024-08-28 17:21:42,845 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\controller\\output_job_controller.py', reloading
+2024-08-28 17:21:44,186 - app - ERROR - Exception on /api/devices [GET]
+Traceback (most recent call last):
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask_cors\extension.py", line 178, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_MyWork\Formacao\Python\peripheral-device-manager\app\routes.py", line 125, in devices
+    devices_list += input_job_controller.list_all_plugins()
+TypeError: unsupported operand type(s) for +=: 'builtin_function_or_method' and 'builtin_function_or_method'
+2024-08-28 17:21:44,203 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:21:44] "[35m[1mGET /api/devices HTTP/1.1[0m" 500 -
+2024-08-28 17:21:45,049 - werkzeug - INFO -  * Restarting with stat
+2024-08-28 17:21:50,948 - werkzeug - WARNING -  * Debugger is active!
+2024-08-28 17:21:50,962 - werkzeug - INFO -  * Debugger PIN: 141-321-799
+2024-08-28 17:21:57,288 - controller.output_job_controller - INFO - _register_all_plugins();plugin label
+2024-08-28 17:21:58,729 - controller.output_job_controller - INFO - _register_all_plugins();plugin receipt
+2024-08-28 17:22:29,060 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\controller\\input_job_controller.py', reloading
+2024-08-28 17:24:45,630 - app - ERROR - Exception on /api/devices [GET]
+Traceback (most recent call last):
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask_cors\extension.py", line 178, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_MyWork\Formacao\Python\peripheral-device-manager\app\routes.py", line 125, in devices
+TypeError: unsupported operand type(s) for +=: 'dict' and 'builtin_function_or_method'
+2024-08-28 17:24:45,668 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:24:45] "[35m[1mGET /api/devices HTTP/1.1[0m" 500 -
+2024-08-28 17:24:46,406 - werkzeug - INFO -  * Restarting with stat
+2024-08-28 17:24:50,221 - werkzeug - WARNING -  * Debugger is active!
+2024-08-28 17:24:50,232 - werkzeug - INFO -  * Debugger PIN: 141-321-799
+2024-08-28 17:24:59,695 - controller.output_job_controller - INFO - list_all_plugins();output plugin label
+2024-08-28 17:25:00,525 - controller.output_job_controller - INFO - list_all_plugins();output plugin receipt
+2024-08-28 17:25:03,057 - controller.input_job_controller - INFO - list_all_plugins();input plugin barcode
+2024-08-28 17:25:03,060 - controller.input_job_controller - INFO - list_all_plugins();input plugin scale
+2024-08-28 17:25:09,389 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:25:09] "GET /api/devices HTTP/1.1" 200 -
+2024-08-28 17:26:42,995 - controller.output_job_controller - INFO - list_all_plugins();output plugin label
+2024-08-28 17:26:42,996 - controller.output_job_controller - INFO - list_all_plugins();output plugin receipt
+2024-08-28 17:26:42,997 - controller.input_job_controller - INFO - list_all_plugins();input plugin barcode
+2024-08-28 17:26:42,998 - controller.input_job_controller - INFO - list_all_plugins();input plugin scale
+2024-08-28 17:26:43,004 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:26:43] "GET /api/devices HTTP/1.1" 200 -
+2024-08-28 17:27:12,646 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:27:12] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-28 17:27:55,600 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\app\\routes.py', reloading
+2024-08-28 17:27:57,962 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:27:57] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-28 17:27:58,675 - werkzeug - INFO -  * Restarting with stat
+2024-08-28 17:28:16,717 - werkzeug - WARNING -  * Debugger is active!
+2024-08-28 17:28:16,733 - werkzeug - INFO -  * Debugger PIN: 141-321-799
+2024-08-28 17:28:16,845 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:28:16] "[33mGET /ws/1 HTTP/1.1[0m" 404 -
+2024-08-28 17:28:16,848 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:28:16] "OPTIONS /api/create_input HTTP/1.1" 200 -
+2024-08-28 17:28:23,425 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:28:23] "[31m[1mPOST /api/create_input HTTP/1.1[0m" 400 -
+2024-08-28 17:28:35,605 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:28:35] "OPTIONS /api/create_input HTTP/1.1" 200 -
+2024-08-28 17:30:01,139 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\app\\routes.py', reloading
+2024-08-28 17:30:27,461 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:30:27] "[31m[1mPOST /api/create_input HTTP/1.1[0m" 400 -
+2024-08-28 17:30:28,266 - werkzeug - INFO -  * Restarting with stat
+2024-08-28 17:30:44,797 - werkzeug - WARNING -  * Debugger is active!
+2024-08-28 17:30:44,812 - werkzeug - INFO -  * Debugger PIN: 141-321-799
+2024-08-28 17:30:44,914 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:30:44] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-28 17:30:49,212 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:30:49] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-28 17:30:49,226 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:30:49] "[33mGET /ws/1 HTTP/1.1[0m" 404 -
+2024-08-28 17:30:59,829 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:30:59] "OPTIONS /api/create_input HTTP/1.1" 200 -
+2024-08-28 17:31:18,247 - app - ERROR - Exception on /api/create_input [POST]
+Traceback (most recent call last):
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask_cors\extension.py", line 178, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\979902\AppData\Local\Programs\Python\Python312\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\_MyWork\Formacao\Python\peripheral-device-manager\app\routes.py", line 89, in create_input
+    'input_data': input_data,
+                  ^^^^^^^^^^
+NameError: name 'input_data' is not defined
+2024-08-28 17:31:18,284 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:31:18] "[35m[1mPOST /api/create_input HTTP/1.1[0m" 500 -
+2024-08-28 17:31:20,624 - werkzeug - INFO -  * Detected change in 'C:\\_MyWork\\Formacao\\Python\\peripheral-device-manager\\app\\routes.py', reloading
+2024-08-28 17:31:21,300 - werkzeug - INFO -  * Restarting with stat
+2024-08-28 17:31:24,819 - werkzeug - WARNING -  * Debugger is active!
+2024-08-28 17:31:24,831 - werkzeug - INFO -  * Debugger PIN: 141-321-799
+2024-08-28 17:31:27,261 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:31:27] "OPTIONS /api/create_input HTTP/1.1" 200 -
+2024-08-28 17:32:12,409 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:32:12] "POST /api/create_input HTTP/1.1" 200 -
+2024-08-28 17:32:55,115 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:32:55] "OPTIONS /api/create_input HTTP/1.1" 200 -
+2024-08-28 17:33:33,523 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:33:33] "POST /api/create_input HTTP/1.1" 200 -
+2024-08-28 17:33:42,619 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:33:42] "OPTIONS /api/get_event_channel HTTP/1.1" 200 -
+2024-08-28 17:34:10,131 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:34:10] "POST /api/get_event_channel HTTP/1.1" 200 -
+2024-08-28 17:34:10,148 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:34:10] "[33mGET /ws/1 HTTP/1.1[0m" 404 -
+2024-08-28 17:34:19,980 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:34:19] "OPTIONS /api/create_input HTTP/1.1" 200 -
+2024-08-28 17:49:26,240 - werkzeug - INFO - 127.0.0.1 - - [28/Aug/2024 17:49:26] "POST /api/create_input HTTP/1.1" 200 -
+2024-08-28 18:00:01,702 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.95:5000
+2024-08-28 18:00:01,703 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-08-28 18:10:59,713 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.95:5000
+2024-08-28 18:10:59,714 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
