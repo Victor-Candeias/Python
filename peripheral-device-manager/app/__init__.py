@@ -1,16 +1,17 @@
-# app/__init__.py
 
 from flask import Flask
 from flask_cors import CORS
-from flask_sock import Sock
 from app.logging_config import setup_logging
 
 def create_app():
+    """
+    create_app _summary_
+
+    Returns:
+        _type_: _description_
+    """
     app = Flask(__name__)
     CORS(app)  # Habilitar CORS para todas as rotas
-
-    # Configurar Sock para WebSockets
-    sock = Sock(app)
 
     # Registrar blueprints e outras configurações do app
     from app.routes import api
@@ -19,4 +20,4 @@ def create_app():
     # Additional setup can go here (e.g., database, logging)
     setup_logging()
 
-    return app, sock
+    return app

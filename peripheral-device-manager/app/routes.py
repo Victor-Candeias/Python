@@ -1,31 +1,21 @@
-# Purpose of app/routes.py
-# Define API Endpoints:
-
-# The primary role of app/routes.py is to define the different routes that your Flask application will serve. Each route corresponds to a specific URL and is associated with a view function that handles requests to that URL.
-# Organize Application Logic:
-
-# By separating route definitions into routes.py, you keep your application organized. It helps in managing the different parts of the application by grouping related routes together.
-# Handle HTTP Methods:
-
-# Each route in routes.py can handle different HTTP methods (e.g., GET, POST, PUT, DELETE), allowing your application to support various types of operations like retrieving data, submitting forms, updating records, or deleting resources.
-# Use Blueprints for Modular Design:
-
-# In larger applications, routes.py may use Flask Blueprints to modularize the routes. Blueprints allow you to group related routes together, making the application easier to maintain and extend.
 
 from flask import Blueprint, request, jsonify
-from controller import output_job_controller
-from controller import input_job_controller
-from controller.device_controller import list_all_devices, create_input_job
-from app.websocket_manager import ws_manager
-from flask_sock import Sock
+from controller.outputManager import output_job_controller
+from controller.inputManager import input_job_controller
+from controller.websocket_manager import websocket_manager #, websocket_client
 
 # Create a blueprint for the API routes
 api = Blueprint('api', __name__)
-sock = Sock()
 
-# Create event channel
+# -----------------------------------------------------------
 @api.route('/get_event_channel', methods=['POST'])
 def get_event_channel():
+    """
+    Create event channel (websockect)
+
+    Returns:
+        string: returns the websockect URI
+    """
     data = request.json
     machineid = data.get('machineid')
     sessionid = data.get('sessionid')
@@ -34,91 +24,82 @@ def get_event_channel():
     if not machineid or not sessionid:
         return jsonify({'error': 'Machine ID and Session ID are required'}), 400
 
-    ws_manager.register_client(sessionid)
-    ws_manager.set_filters(sessionid, filters)
-    
-    websocket_uri = f"ws://{request.host}/ws/{sessionid}"
-    
-    # assicia
-    ws_manager.associate_websocket(client_id=sessionid, ws=websocket_uri)
-    
+    websocket_uri = websocket_manager.add_client(sessionid, "", filters)
+
     return jsonify({'websocket_uri': websocket_uri})
 
-# Rota WebSocket para o cliente
-@sock.route('/ws/<sessionid>')
-def ws_handler(ws, sessionid):
-    ws_manager.associate_websocket(sessionid, ws)
-
-    try:
-        while True:
-            data = ws.receive()
-            if data is None:
-                break
-
-            # Exemplo de processamento: verificar se é um comando de broadcast
-            if data.startswith('broadcast:'):
-                # Envia mensagem para todos os clientes conectados
-                message_to_broadcast = data.split('broadcast:', 1)[1].strip()
-                ws_manager.broadcast_message("broadcast", message_to_broadcast)
-            else:
-                # Caso contrário, envia a mensagem apenas para o cliente atual
-                ws_manager.send_message(sessionid, "response", f"Received: {data}")
-
-    except Exception as e:
-        print(f"WebSocket connection with client {sessionid} closed with error: {e}")
-    finally:
-        ws_manager.remove_connection(sessionid, ws)
-
-# Create input             
+# -----------------------------------------------------------           
 @api.route('/create_input', methods=['POST'])
 def create_input():
+    """
+    Create input data from plugin (scale, barcode) or external device
+
+    Returns:
+        json: return the result
+    """
     data = request.json
-    machineid = data.get('machineid')
-    sessionid = data.get('sessionid')
-    input_type = data.get('input_type')  # Ex: "scale" ou "barcode"
-    value = data.get('value')  # Dados do input (peso, código de barras, etc.)
-    extra_data = data.get('extra_data', {})  # Dados adicionais
+    data = input_job_controller.create_input(data)
+    
+    return data
 
-    if not machineid or not sessionid or not input_type or not value:
-        return jsonify({'error': 'Machine ID, Session ID, Input Type, and Input Data are required'}), 400
-
-    # Constrói a mensagem a ser enviada
-    message = {
-        'machineid': machineid,
-        'input_type': input_type,
-        'value': value,
-        'extra_data': extra_data
-    }
-
-    # Envia a mensagem via WebSocket para todos os clientes conectados com o sessionid especificado
-    ws_manager.send_message(sessionid, "input_data", message)
-
-    return jsonify({'status': 'success', 'message': 'Input data sent to WebSocket clients'}), 200
-
-# Define the route for creating an output job
+# -----------------------------------------------------------
 @api.route('/output_job', methods=['POST'])
 def create_output():
+    """
+    Define the route for creating an output job for receipt printers, label printers, etc.
+    The output job could be synchronous or asynchronous
+    receive a json
+        {
+        "machineid":"1",
+        "sessionid":"1",
+        "userinfo":"1",
+        "ticket_id":"1",
+        "type_of_job":"receipt",
+        "job_mode":"synchronous",
+        "date":"2024-08-24"
+        }
+    Returns:
+        json string: return the job id.
+    """
     data = request.json
     job_id = output_job_controller.add_job(data)
     return jsonify({"job_id": job_id})
 
-# Define the route for deleting an output job
+# -----------------------------------------------------------
 @api.route('/output_job', methods=['DELETE'])
 def delete_output():
+    """
+    Define the route for deleting an output job
+
+    Returns:
+        json: return the result os the delete
+    """
     data = request.json
     result = output_job_controller.delete_job(data)
     return jsonify({"result": result})
 
-# Define the route for listing all output jobs
+# -----------------------------------------------------------
 @api.route('/output_jobs', methods=['GET'])
 def list_outputs():
+    """
+    Define the route for listing all output jobs
+
+    Returns:
+        json: return the list of all output jobs
+    """
     data = request.args.to_dict()  # Use query parameters for GET request
     jobs = output_job_controller.list_jobs(data)
     return jsonify(jobs)
         
-# Define the route for listing all devices
+# -----------------------------------------------------------
 @api.route('/devices', methods=['GET'])
 def devices():
+    """
+    Define the route for listing all devices
+
+    Returns:
+        json: return all input and output devices
+    """
     devices_list = []
     
     # append output plugins
