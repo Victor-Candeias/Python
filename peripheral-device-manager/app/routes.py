@@ -2,7 +2,7 @@
 from flask import Blueprint, request, jsonify
 from controller.outputManager import output_job_controller
 from controller.inputManager import input_job_controller
-from controller.websocket_manager import websocket_manager #, websocket_client
+# from controller.websocket_manager import websocket_manager #, websocket_client
 
 # Create a blueprint for the API routes
 api = Blueprint('api', __name__)
@@ -20,11 +20,11 @@ def get_event_channel():
     machineid = data.get('machineid')
     sessionid = data.get('sessionid')
     filters = data.get('filters', [])
-
+    
     if not machineid or not sessionid:
         return jsonify({'error': 'Machine ID and Session ID are required'}), 400
 
-    websocket_uri = websocket_manager.add_client(sessionid, "", filters)
+    websocket_uri = request.host_url # websocket_manager.add_client(sessionid, "", filters)
 
     return jsonify({'websocket_uri': websocket_uri})
 

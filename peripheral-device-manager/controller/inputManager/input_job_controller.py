@@ -12,7 +12,6 @@ class InputJobController:
     def __init__(self):
         self.jobs = {}  # Armazena jobs com seu status
         self.logger = logging.getLogger(__name__)
-        self.job_queue = Queue()  # Fila de jobs
 
         # plugins directory
         self.pluginsDirectory = os.path.join(os.path.dirname(__file__), 'plugins')
@@ -22,10 +21,9 @@ class InputJobController:
 
         self.logger.info(f"_register_all_plugins();input plugin count {len(self.plugins)}")
 
-        # Thread para processar a fila de jobs
-        self.worker_thread = threading.Thread(target=self._process_queue)
-        self.worker_thread.daemon = True  # Permite encerrar o thread quando o programa principal termina
-        self.worker_thread.start()
+        # Stop all plugin job processing
+        for plugin in self.plugins.values():
+            plugin.start()
 
     def create_input(self, data):
         data = request.json
@@ -46,56 +44,38 @@ class InputJobController:
             'extra_data': extra_data
         }
 
+        from controller.websocket_manager.websocket_client import WebSocketClient
+
         # Send data to WebSocket
+        # Create a WebSocketClient instance
+        client = WebSocketClient(request.host_url)  # Replace with your server URL
+        
+        # Connect to the server with session ID and filters
+        client.connect(session_id=sessionid, filters=[input_type])
+        
+        client.send_message(message)
+        
+
+        # Keep the client running to listen for events
+        client.keep_running()
+        #client.disconnect()
 
         # return result
         return jsonify({'status': 'success', 'message': 'Input data sent to WebSocket clients'}), 200
 
-    def add_job(self, data):
-        self.logger.info(f"add_job();data {data}")
-        self.logger.info(f"add_job();Job type {data['type_of_job']}")
+    # def add_job(self, data):
+    #     self.logger.info(f"add_job();data {data}")
+    #     self.logger.info(f"add_job();Job type {data['type_of_job']}")
 
-        job_id = str(uuid.uuid4())
-        job = {**data, "status": "queued", "job_id": job_id}
+    #     job_id = str(uuid.uuid4())
+    #     job = {**data, "status": "queued", "job_id": job_id}
 
-        self.logger.info(f"add_job();Job {job}")
+    #     self.logger.info(f"add_job();Job {job}")
 
-        self.jobs[job_id] = job
-        self.job_queue.put(job)  # Adiciona o job à fila
+    #     self.jobs[job_id] = job
+    #     self.job_queue.put(job)  # Adiciona o job à fila
 
-        return {"message": "Job accepted", "job_id": job_id}
-
-    def _process_queue(self):
-        while True:
-            job = self.job_queue.get()
-            if job is None:
-                break
-            self._process_job(job)
-            self.job_queue.task_done()
-            
-    def _process_job(self, job):
-        plugin = self.plugins.get(job["type_of_job"])
-        if plugin:
-            job["status"] = "processing"
-            self.logger.info(f"Processing job {job['job_id']} with plugin {plugin.get_type()}")
-
-            # Processa o job em um thread separado
-            threading.Thread(target=self._async_job_handler, args=(job, plugin)).start()
-        else:
-            job["status"] = "failed"
-            self.logger.error(f"No plugin found for job type: {job['type_of_job']}")
-            return "failed"
-
-    def _async_job_handler(self, job, plugin):
-        """Handler que processa o job assíncrono e chama end_asynchronous_job ao final."""
-        result = plugin.process(job)
-        self.end_asynchronous_job(job, result)
-
-    def end_asynchronous_job(self, job, result):
-        """Chama este método após o término de um job assíncrono."""
-        job_id = job["job_id"]
-        self.jobs[job_id]["status"] = "completed"
-        self.logger.info(f"end_asynchronous_job(); Job {job_id} completed with result: {result}")
+    #     return {"message": "Job accepted", "job_id": job_id}
 
     def stop(self):
         # Stop all plugin job processing

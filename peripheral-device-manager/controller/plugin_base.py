@@ -20,7 +20,9 @@ class PluginBase:
 
         # Serial port manager will be set by the derived class
         self.serial_port_manager = None
- 
+
+        self._running = False
+        
         # Load configuration
         self.load_configuration()
 
@@ -50,6 +52,18 @@ class PluginBase:
         """
         raise NotImplementedError("Derived classes must implement this method")
 
+    def start(self):
+        """
+        Abstract method to be implemented by derived classes.
+        """
+        raise NotImplementedError("Derived classes must implement this method")
+
+    def stop(self):
+        """
+        Abstract method to be implemented by derived classes.
+        """
+        raise NotImplementedError("Derived classes must implement this method")
+          
     def get_type(self):
         """
         Return the plugin name.

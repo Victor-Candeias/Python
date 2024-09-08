@@ -39,6 +39,20 @@ class LabelPlugin(PluginBase):
                 return status_result
 
             try:
+                # Exemple
+                # json_data = '''
+                # {
+                # "text": "Hello, World!",
+                # "x": 100,
+                # "y": 150,
+                # "font_size": 40,
+                # "orientation": "R",
+                # "barcode": "1234567890",
+                # "barcode_type": "QR",
+                # "barcode_x": 200,
+                # "barcode_y": 300
+                # }
+                # '''
                 zpl_content = self.json_to_zpl(data)
             except ValueError as e:
                 status_result = "400"
@@ -46,10 +60,15 @@ class LabelPlugin(PluginBase):
                 return status_result
 
             try:
+                self.serial_port_manager.start_communication()
+
                 result_send_data = self.serial_port_manager.send_data(zpl_content.encode())
 
                 status_result = "200" if result_send_data else "400"
+            except:
+                status_result = "400"
             finally:
+                self.serial_port_manager.stop_communication()
                 self.serial_port_manager.disconnect()
         else:
             status_result = "400"

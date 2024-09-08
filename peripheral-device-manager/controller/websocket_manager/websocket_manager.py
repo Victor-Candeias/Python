@@ -1,47 +1,31 @@
-# flask_restful_api/websocket_manager/websocket_manager.py
+# /ws_manager.py
 
-from collections import defaultdict
-from .client import WebSocketClient
+from flask_socketio import SocketIO, join_room, leave_room
 
 class WebSocketManager:
-    def __init__(self, host='localhost', port=5000):
-        self.clients = {}
-        self.client_groups = defaultdict(list)
-        self.host = host
-        self.port = port
+    def __init__(self, socketio: SocketIO):
+        self.socketio = socketio
 
-    def add_client(self, client_id, connection, filters=None):
-        # Adiciona o cliente
-        client = WebSocketClient(client_id, connection, filters)
-        self.clients[client_id] = client
+    def send_message(self, message: str, rooms: list = None):
+        """Send a message to specific rooms"""
+        if rooms:
+            for room in rooms:
+                self.socketio.emit('message', message, room=room)
+        else:
+            self.socketio.emit('message', message)
 
-        # Organiza o cliente nos grupos, conforme os filtros
-        for key, value in filters.items():
-            self.client_groups[key].append(client)
-        
-        # Constrói a URI do WebSocket
-        uri = f"ws://{self.host}:{self.port}/ws/{client_id}"
-        
-        # Retorna a URI
-        return uri
+    def join_rooms(self, rooms: list):
+        """Join multiple rooms"""
+        for room in rooms:
+            join_room(room)
+            self.send_message(f"You have joined the room: {room}", [room])
 
-    def remove_client(self, client_id):
-        client = self.clients.pop(client_id, None)
-        if client:
-            client.close_connection()
-            for key in client.filters.keys():
-                self.client_groups[key].remove(client)
+    def leave_rooms(self, rooms: list):
+        """Leave multiple rooms"""
+        for room in rooms:
+            leave_room(room)
+            self.send_message(f"You have left the room: {room}", [room])
 
-    def send_message_to_client(self, client_id, message):
-        client = self.clients.get(client_id)
-        if client:
-            client.send_message(message)
-
-    def send_message_to_group(self, filter_key, message):
-        clients = self.client_groups.get(filter_key, [])
-        for client in clients:
-            client.send_message(message)
-
-    def close_all_connections(self):
-        for client_id, client in list(self.clients.items()):
-            self.remove_client(client_id)
+    def broadcast_message(self, message: str):
+        """Broadcast a message to all connected clients"""
+        self.socketio.emit('message', message, broadcast=True)
