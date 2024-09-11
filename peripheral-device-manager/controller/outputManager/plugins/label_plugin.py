@@ -14,12 +14,12 @@ class LabelPlugin(PluginBase):
         Initialize the Label plugin class by calling the base class initializer.
         """
         super().__init__(os.path.join(os.path.dirname(__file__)))
-        
+
     def process(self, job):
         """
         Process the given job and handle the serial connection and data transmission.
         """
-        self.logger.info(f"Processing {self.plugin_name} Job {job['job_id']}")
+        self.logger.info(f"Processing {self.plugin_name} Job {job['jobId']}")
 
         # initialize ok
         status_result = "200"
@@ -77,13 +77,28 @@ class LabelPlugin(PluginBase):
         return status_result
 
     def json_to_zpl(self, data):
+        """
+        Convert the json to zpl commands
+
+        Args:
+            data (str): json dictionary
+
+        Raises:
+            ValueError: _description_
+            ValueError: _description_
+            ValueError: _description_
+            ValueError: _description_
+
+        Returns:
+            str: ZPL string
+        """
         zpl = "^XA\n"
 
-        # Validação básica
+        # Basic validation
         if not isinstance(data, dict):
-            raise ValueError("JSON inválido: esperado um dicionário.")
+            raise ValueError("Invalid JSON: expected a dictionary.")
 
-        # Texto
+        # Text
         if 'text' in data:
             text = data['text']
             x = data.get('x', 50)
@@ -92,11 +107,11 @@ class LabelPlugin(PluginBase):
             orientation = data.get('orientation', 'N')  # N: normal, R: rotacionado 90, I: invertido 180, B: rotacionado 270
             
             if orientation not in ['N', 'R', 'I', 'B']:
-                raise ValueError(f"Orientação de texto inválida: {orientation}")
+                raise ValueError(f"Invalid text orientation: {orientation}")
             
             zpl += f"^FO{x},{y}\n^A0{orientation},{font_size},{font_size}\n^FD{text}^FS\n"
 
-        # Código de barras
+        # Barcode
         if 'barcode' in data:
             barcode = data['barcode']
             x = data.get('barcode_x', 50)
@@ -110,9 +125,9 @@ class LabelPlugin(PluginBase):
             elif barcode_type == 'Code39':
                 zpl += f"^FO{x},{y}\n^B3N,N,{height},Y,N\n^FD{barcode}^FS\n"
             else:
-                raise ValueError(f"Tipo de código de barras não suportado: {barcode_type}")
+                raise ValueError(f"Unsupported barcode type: {barcode_type}")
 
-        # Imagem
+        # Image
         if 'image' in data:
             image_base64 = data['image']
             x = data.get('image_x', 50)
@@ -123,7 +138,7 @@ class LabelPlugin(PluginBase):
                 bytes_per_row = len(image_data) // len(data.get('image_height', [1]))
                 zpl += f"^FO{x},{y}\n^GFA,{len(image_hex)},{len(image_hex)},{bytes_per_row},{image_hex}^FS\n"
             except binascii.Error as e:
-                raise ValueError(f"Erro ao decodificar a imagem: {e}")
+                raise ValueError(f"Error decoding the image: {e}")
         
         zpl += "^XZ"
         return zpl

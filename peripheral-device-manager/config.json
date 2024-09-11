@@ -1,0 +1,9 @@
+{
+    "SECRET_KEY": "my_secret_key",
+    "DEBUG": true,
+    "TESTING": false,
+    "LOG_FILES_DIRECTORY": "C:\\logfiles\\DeviceManager",
+    "PROTOCOL":"http://",
+    "HOST": "localhost",
+    "PORT": 5000
+}

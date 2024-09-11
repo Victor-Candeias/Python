@@ -1,9 +1,9 @@
-# /config.py
+# messages.py
 
 import os
 import json
 
-class Config:
+class Messages:
     # instance of the singleton
     _instance = None
 
@@ -13,7 +13,7 @@ class Config:
         if cls._instance is None:
             cls._instance = super().__new__(cls)
         return cls._instance
-
+       
     # --------------------------------------------------------------------------------------------------
     def __init__(self):
         # get the current file directory
@@ -37,4 +37,4 @@ class Config:
                     setattr(self, k, data.get(k))
 
 # initialize the singleton
-config = Config()
+messages = Messages()

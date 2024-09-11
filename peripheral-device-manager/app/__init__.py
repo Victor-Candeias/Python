@@ -2,22 +2,26 @@
 from flask import Flask
 from flask_cors import CORS
 from app.logging_config import setup_logging
-
+    
 def create_app():
     """
-    create_app _summary_
-
-    Returns:
-        _type_: _description_
+    Initialize the application
+    
+        Returns:
+            class: Return the app instance
     """
+    
+    # create Flash app
     app = Flask(__name__)
-    CORS(app)  # Habilitar CORS para todas as rotas
+    
+    # enable CORS for all routes
+    CORS(app)  
 
-    # Registrar blueprints e outras configurações do app
+    # register blueprints and other app settings
     from app.routes import api
     app.register_blueprint(api, url_prefix='/api')
 
-    # Additional setup can go here (e.g., database, logging)
+    # additional setup can go here (e.g., database, logging)
     setup_logging()
 
     return app

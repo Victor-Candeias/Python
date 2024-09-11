@@ -1,48 +1,77 @@
-# /events.py
+# /websocket_events.py
 
+import logging
 from flask import render_template
 from flask_socketio import send
-from controller.websocket_manager.websocket_manager import WebSocketManager  # Import WebSocketManager
+from controller.websocket_manager.websocket_manager import WebSocketManager
 
-# Define a function to initialize the routes and WebSocket events
 def init_events(app, socketio):
-    # Initialize WebSocketManager
+    """
+    define a function to initialize the routes and WebSocket events
+
+    Args:
+        app (class app): current app created
+        socketio (class): websocket lib
+    """
+    
+    # log manager
+    logger = logging.getLogger(__name__,)
+    
+    # initialize WebSocketManager
     ws_manager = WebSocketManager(socketio)
 
-    # WebSocket event: client connect
     @socketio.on('connect')
     def handle_connect():
-        print("Client connected")
+        """
+        websocket event: client connect
+        """
+        logger.info("Client connected")
         send("Welcome to the WebSocket!")
 
-    # WebSocket event: client disconnect
     @socketio.on('disconnect')
     def handle_disconnect():
-        print("Client disconnected")
+        """
+        websocket event: client disconnect
+        """
+        logger.info("Client disconnected")
 
-    # WebSocket event: handle message
     @socketio.on('message')
     def handle_message(data):
-        print(f"Received message: {data}")
+        """
+        websocket event: handle message
 
-        if (data == 'Hello from the external client!'):
-            return
-    
-        # Use WebSocketManager to echo the message
+        Args:
+            data (str): data to send to the client
+        """
+        logger.info(f"Received message: {data}")
+
+        # Use websocketManager to echo the message
         ws_manager.send_message(f"Echo: {data}")
 
     @socketio.on('join')
     def handle_join(data):
+        """
+        add client to a room
+
+        Args:
+            data (str): rooms to add
+        """
         rooms = data.get('rooms', [])
         if rooms:
             ws_manager.join_rooms(rooms)
             for room in rooms:
-                send(f"You have joined the room: {room}", room=room)
+                logger.info(f"You have joined the room: {room}")
 
     @socketio.on('leave')
     def handle_leave(data):
+        """
+        remove client from room
+
+        Args:
+            data (str): rooms to remove
+        """
         rooms = data.get('rooms', [])
         if rooms:
             ws_manager.leave_rooms(rooms)
             for room in rooms:
-                send(f"You have left the room: {room}", room=room)
+                logger.info(f"You have left the room: {room}")

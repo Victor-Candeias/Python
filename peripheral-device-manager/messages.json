@@ -1,0 +1,7 @@
+{
+    "STATUS_RESULT_OK": 200,
+    "STATUS_RESULT_ERROR": 400,
+    "ROUTES_MACHINE_ID_ERROR": "Machine ID and Session ID are required",
+    "NOT_IMPLEMENTED":"Derived classes must implement this method",
+    "PLUGIN_CONFIG_NOT_FOUND": "Configuration file not found: "
+}

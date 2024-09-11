@@ -2,43 +2,43 @@
 from flask import Blueprint, request, jsonify
 from controller.outputManager import output_job_controller
 from controller.inputManager import input_job_controller
-# from controller.websocket_manager import websocket_manager #, websocket_client
+from messages import Messages
 
-# Create a blueprint for the API routes
+# create a blueprint for the API routes
 api = Blueprint('api', __name__)
 
 # -----------------------------------------------------------
 @api.route('/get_event_channel', methods=['POST'])
 def get_event_channel():
     """
-    Create event channel (websockect)
-
-    Returns:
-        string: returns the websockect URI
+    create event channel (websocket)
+    
+        Returns:
+            string: returns the websocket URI
     """
     data = request.json
-    machineid = data.get('machineid')
-    sessionid = data.get('sessionid')
-    filters = data.get('filters', [])
+    machineId = data.get('machineId')
+    sessionId = data.get('sessionId')
     
-    if not machineid or not sessionid:
-        return jsonify({'error': 'Machine ID and Session ID are required'}), 400
+    if not machineId or not sessionId:
+        return jsonify({"error": Messages._instance.ROUTES_MACHINE_ID_ERROR}), Messages._instance.STATUS_RESULT_ERROR
 
-    websocket_uri = request.host_url # websocket_manager.add_client(sessionid, "", filters)
+    websocket_uri = request.host_url
 
+    # return the websocket uri
     return jsonify({'websocket_uri': websocket_uri})
 
 # -----------------------------------------------------------           
 @api.route('/create_input', methods=['POST'])
 def create_input():
     """
-    Create input data from plugin (scale, barcode) or external device
+    create input data from plugin (scale, barcode) or external device
 
     Returns:
         json: return the result
     """
     data = request.json
-    data = input_job_controller.create_input(data)
+    data = input_job_controller.create_input(data, request.host_url)
     
     return data
 
@@ -46,7 +46,7 @@ def create_input():
 @api.route('/output_job', methods=['POST'])
 def create_output():
     """
-    Define the route for creating an output job for receipt printers, label printers, etc.
+    define the route for creating an output job for receipt printers, label printers, etc.
     The output job could be synchronous or asynchronous
     receive a json
         {
@@ -58,18 +58,19 @@ def create_output():
         "job_mode":"synchronous",
         "date":"2024-08-24"
         }
+        
     Returns:
         json string: return the job id.
     """
     data = request.json
-    job_id = output_job_controller.add_job(data)
+    job_id = output_job_controller.add_job(data, request.host_url)
     return jsonify({"job_id": job_id})
 
 # -----------------------------------------------------------
 @api.route('/output_job', methods=['DELETE'])
 def delete_output():
     """
-    Define the route for deleting an output job
+    define the route for deleting an output job
 
     Returns:
         json: return the result os the delete
@@ -82,12 +83,14 @@ def delete_output():
 @api.route('/output_jobs', methods=['GET'])
 def list_outputs():
     """
-    Define the route for listing all output jobs
+    define the route for listing all output jobs
 
     Returns:
         json: return the list of all output jobs
     """
-    data = request.args.to_dict()  # Use query parameters for GET request
+    
+    # use query parameters for GET request
+    data = request.args.to_dict()  
     jobs = output_job_controller.list_jobs(data)
     return jsonify(jobs)
         
@@ -95,7 +98,7 @@ def list_outputs():
 @api.route('/devices', methods=['GET'])
 def devices():
     """
-    Define the route for listing all devices
+    define the route for listing all devices
 
     Returns:
         json: return all input and output devices
@@ -109,21 +112,3 @@ def devices():
     devices_list.append(input_job_controller.list_all_plugins())
     
     return jsonify(devices_list)
-
-
-
-
-
-
-
-
-# Why Use routes.py?
-# Separation of Concerns:
-
-# By placing all route definitions in routes.py, you separate the routing logic from the application initialization (which typically happens in app/__init__.py). This keeps your code clean and focused.
-# Modularity:
-
-# Using Blueprints in routes.py allows you to organize your application into modular components. This is particularly beneficial in larger applications where different parts of the application can be logically separated.
-# Maintainability:
-
-# Having a single file to manage routes makes it easier to update and maintain the routes in your application.

@@ -58,7 +58,9 @@ class ReceiptPlugin(PluginBase):
         return status_result
 
     def process_json(self, json_data):
-        """Processa o JSON e imprime conforme especificado"""
+        """
+        Processes JSON and prints as specified
+        """
         data = json.loads(json_data)
 
         for item in data['items']:
@@ -71,54 +73,66 @@ class ReceiptPlugin(PluginBase):
             elif item['type'] == 'image':
                 self.print_image(item['path'], item['x'], item['y'])
             else:
-                print(f"Tipo de item desconhecido: {item['type']}")
+                print(f"Unknown item type: {item['type']}")
 
     def send_command(self, command):
-        """Envia um comando ESC/POS para a impressora"""
+        """
+        Sends an ESC/POS command to the printer
+        """
         self.serial_port_manager.send_data(command)
         
     def initialize_printer(self):
-        """Inicializa a impressora"""
+        """
+        Initialize the printer
+        """
         self.send_command(b'\x1B\x40')  # ESC @
 
     def print_image(self, image_path, x, y):
-        """Imprime uma imagem na posição especificada"""
+        """
+        Prints an image at the specified position
+        """
         img = Image.open(image_path)
-        img = img.convert('1')  # Converte para preto e branco
+        img = img.convert('1')  # Converts to black and white
         img = img.resize((img.width // 8, img.height))
         width, height = img.size
         pixels = img.tobytes()
         self.send_command(b'\x1B\x40')  # ESC @
-        # Envia a imagem (os detalhes do comando podem variar conforme o modelo da impressora)
+        # Sends the image (command details may vary depending on the printer model)
         self.send_command(b'\x1D\x76\x30\x00' + width.to_bytes(2, 'little') + height.to_bytes(2, 'little') + pixels)
 
     def print_qrcode(self, data, x, y, size=3):
-        """Imprime um QR Code na posição especificada"""
+        """
+        Prints a QR Code at the specified position
+        """
         self.send_command(b'\x1B\x40')  # ESC @
-        self.send_command(b'\x1D\x28\x6B\x03\x00\x31\x43' + size.to_bytes(1, 'little'))  # Tamanho do QR Code
-        self.send_command(b'\x1D\x28\x6B\x03\x00\x31\x45\x00')  # Nível de correção de erro
-        self.send_command(b'\x1D\x28\x6B' + (len(data) + 3).to_bytes(1, 'little') + b'\x31\x50\x30' + data.encode())  # Dados do QR Code
-        self.send_command(b'\x1D\x28\x6B\x03\x00\x31\x51\x30')  # Imprime o QR Code
+        self.send_command(b'\x1D\x28\x6B\x03\x00\x31\x43' + size.to_bytes(1, 'little'))  # QR Code Size
+        self.send_command(b'\x1D\x28\x6B\x03\x00\x31\x45\x00')  # Error correction level
+        self.send_command(b'\x1D\x28\x6B' + (len(data) + 3).to_bytes(1, 'little') + b'\x31\x50\x30' + data.encode())  # QR Code Data
+        self.send_command(b'\x1D\x28\x6B\x03\x00\x31\x51\x30')  # Print the QR Code
 
     def print_barcode(self, data, x, y, width=2, height=162):
-        """Imprime um código de barras na posição especificada"""
+        """
+        Prints a barcode at the specified position
+        """
         self.send_command(b'\x1B\x40')  # ESC @
-        self.send_command(b'\x1D\x6B\x02')  # Código de barras
-        self.send_command(width.to_bytes(1, 'little'))  # Largura
-        self.send_command(height.to_bytes(1, 'little'))  # Altura
+        self.send_command(b'\x1D\x6B\x02')  # Barcode
+        self.send_command(width.to_bytes(1, 'little'))  # Width
+        self.send_command(height.to_bytes(1, 'little'))  # Height
         self.send_command(data.encode() + b'\n')
 
     def print_text(self, text, x, y, font_size):
-        """Imprime o texto na posição especificada com o tamanho da fonte"""
-        # Dependendo do modelo da impressora, você pode precisar ajustar esses comandos
-        self.send_command(b'\x1B\x40')  # ESC @ (Inicializa a impressora)
-        # Ajuste a posição (por exemplo, definindo o cursor para x e y, se suportado)
+        """
+        Prints text at specified position with font size
+        """
+        # Depending on your printer model, you may need to adjust these commands
+        self.send_command(b'\x1B\x40')  # ESC @ (Initialize the printer)
+        # Adjust the position (e.g. setting the cursor to x and y, if supported)
         self.send_command(b'\x1B\x24' + x.to_bytes(2, 'little') + y.to_bytes(2, 'little'))
-        # Ajusta o tamanho da fonte (este comando pode variar entre modelos)
+        # Adjust font size (this command may vary between models)
         if font_size == 'small':
-            self.send_command(b'\x1D\x21\x00')  # Font pequena
+            self.send_command(b'\x1D\x21\x00')  # Small font
         elif font_size == 'large':
-            self.send_command(b'\x1D\x21\x11')  # Font grande
+            self.send_command(b'\x1D\x21\x11')  # Large font
         self.send_command(text.encode() + b'\n')
 
 # Register the plugin

@@ -1,4 +1,4 @@
-from typing import List, Dict, Optional
+from typing import Callable, List, Dict, Optional
 
 from controller.serialPortManager.serial_connection_manager import SerialConnectionManager
 
@@ -6,7 +6,8 @@ class MultiSerialConnectionManager:
     def __init__(self):
         self.connections: Dict[str, SerialConnectionManager] = {}
 
-    def add_connection(self, name: str, port: str, baud_rate: int = 9600, timeout: float = 1.0, max_retries: int = 5, retry_delay: float = 5.0, exponential_backoff: bool = False, on_data_received: Optional[Callable[[str], None]] = None, on_reconnect: Optional[Callable] = None):
+    def add_connection(self, name: str, port: str, baud_rate: int = 9600, timeout: float = 1.0, max_retries: int = 5, retry_delay: float = 5.0, 
+                       exponential_backoff: bool = False, on_data_received: Optional[Callable[[str], None]] = None, on_reconnect: Optional[Callable] = None):
         """Adiciona uma nova conexão serial ao gerenciador."""
         connection = SerialConnectionManager(
             port=port,

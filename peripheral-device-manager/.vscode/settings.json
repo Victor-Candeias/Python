@@ -1,5 +1,8 @@
 {
     "python.analysis.extraPaths": [
         "./controller"
+    ],
+    "cSpell.words": [
+        "assincronos"
     ]
 }
