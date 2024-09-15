@@ -1,66 +1,67 @@
-# /controller/websocket_manager.py
+# /controller/websocket_manager/websocket_manager.py
 
+import logging
 from flask_socketio import SocketIO, join_room, leave_room
 
 class WebSocketManager:
     def __init__(self, socketio: SocketIO):
         """
-        Initializes the WebSocketManager with a SocketIO instance, which will handle all WebSocket communication.
+        Initializes the WebSocketManager with a SocketIO instance.
 
         Args:
-            socketio (SocketIO): SocketIO lib instance
+            socketio (SocketIO): SocketIO instance.
         """
+        self.logger = logging.getLogger(__name__)
         self.socketio = socketio
 
     def send_message(self, message: str, rooms: list = None):
         """
-        Sends a message to one or more specific rooms. If no rooms are provided, it emits the message to all clients.
+        Sends a message to one or more specific rooms. If no rooms are provided, broadcasts to all.
 
         Args:
             message (str): The message to send.
-            rooms (list, optional): A list of room names where the message should be sent.. Defaults to None.
+            rooms (list, optional): A list of rooms where the message should be sent.
+        """ 
+        if rooms:
+            for room in rooms:
+                self.socketio.emit('message', {'room': room, 'message': message}, room=room)
+        else:
+            self.socketio.emit('message', message, broadcast=True)
+
+    def join_rooms(self, rooms: list):
+        """
+        Add the current user to multiple rooms.
+
+        Args:
+            rooms (list): A list of room names the user should join.
+        """
+        for room in rooms:
+            join_room(room)
+        
+        self.logger.info(f"Joined rooms: {', '.join(rooms)}", rooms)
+
+    def leave_rooms(self, rooms: list):
+        """
+        Remove the current user from multiple rooms.
+
+        Args:
+            rooms (list): A list of room names the user should leave.
+        """
+        for room in rooms:
+            leave_room(room)
+            
+        self.logger.info(f"Left rooms: {', '.join(rooms)}", rooms)
+
+    def broadcast_message(self, message: str, rooms: list = None):
+        """
+        Broadcasts a message to all clients or specific rooms.
+
+        Args:
+            message (str): The message to broadcast.
+            rooms (list, optional): A list of rooms to target. Broadcasts to all if not provided.
         """
         if rooms:
             for room in rooms:
                 self.socketio.emit('message', message, room=room)
         else:
-            self.socketio.emit('message', message)
-
-    def join_rooms(self, rooms: list):
-        """
-        Makes the current user join multiple rooms and notifies them upon joining.
-
-        Args:
-            rooms (list): A list of room names the user should join.
-            
-        Flow:
-            The join_room() function adds the user to the specified room(s).
-            A confirmation message is sent to each room after joining.
-        """
-        for room in rooms:
-            join_room(room)
-            self.send_message(f"You have joined the room: {room}", [room])
-
-    def leave_rooms(self, rooms: list):
-        """
-        Makes the current user leave multiple rooms and notifies them upon leaving.
-
-        Args:
-            rooms (list): A list of room names the user should leave.
-            
-            Flow:
-                The leave_room() function removes the user from the specified room(s).
-                A message is sent to each room after leaving.
-        """
-        for room in rooms:
-            leave_room(room)
-            self.send_message(f"You have left the room: {room}", [room])
-
-    def broadcast_message(self, message: str):
-        """
-        Sends a message to all connected WebSocket clients.
-
-        Args:
-            message (str): The message to send.
-        """
-        self.socketio.emit('message', message, broadcast=True)
+            self.socketio.emit('message', message, broadcast=True)

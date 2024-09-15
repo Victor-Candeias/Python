@@ -11,7 +11,8 @@
             "module": "flask",
             "env": {
                 "FLASK_APP": "run.py",  // The entry point of your app
-                "FLASK_ENV": "development" // Enables debug mode
+                "FLASK_ENV": "development", // Enables debug mode
+                "FLASK_DEBUG": "1"
             },
             "args": [
                 "run",

@@ -3,7 +3,13 @@ import json
 import os
 from controller.plugin_registry import PluginRegistry
 import messages
+from enum import Enum
 
+# operating system enum
+class OPERATING_SYSTEM_TYPE(Enum):
+    WINDOWS = 1
+    LINUX = 2
+    
 class Utilities:
     @staticmethod
     def registerPlugins(plugins_dir, logger, inputType):
@@ -52,12 +58,32 @@ class Utilities:
         # Create a WebSocketClient instance
         client = WebSocketClient(hostUrl)  # Replace with your server URL request.host_url
         
-        # Connect to the server with session ID and filters
-        client.connect(sessionId=sessionId, filters=[inputType])
+        filters=[sessionId, inputType]
         
-        client.send_message(message)
+        # Connect to the server with session ID and filters
+        client.connect(filters=filters)
+        
+        # client.send_message(message)
+        client.send_message_to_rooms(filters, message)
         
         # Keep the client running to listen for events
         client.keep_running(waitTimeToExit=2)
         
         client.disconnect()
+        
+    @staticmethod
+    def getOperatingSystemType():
+        import os
+
+        if os.name == 'nt':
+            return OPERATING_SYSTEM_TYPE.WINDOWS
+        else:
+            return OPERATING_SYSTEM_TYPE.LINUX
+        
+    @staticmethod
+    def validate_json(json_string):
+        try:
+            json_object = json.loads(json_string)
+            return True, json_object  # JSON is valid
+        except json.JSONDecodeError as e:
+            return False, str(e)  # JSON is invalid, return the error message

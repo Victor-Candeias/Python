@@ -3,6 +3,9 @@ import json
 import os
 from tkinter import Image
 from controller.plugin_base import PluginBase
+from controller.utilities import Utilities, OPERATING_SYSTEM_TYPE
+from controller.serialPortManager.linux_serial_connection_manager import LinuxSerialPortManager
+from controller.serialPortManager.windows_serial_port_manager import WindowsAsyncSerialManager
 
 # Set the plugin_name at the base class level
 PluginBase.plugin_name = os.path.splitext(os.path.basename(__file__))[0]
@@ -20,27 +23,48 @@ class ReceiptPlugin(PluginBase):
         """
         self.logger.info(f"Processing {self.plugin_name} Job {job['job_id']}")
 
+        if (self.jsonConfigurationPlugin == ''):
+            self.logger.info(f"Missing configuration for {self.plugin_name} for Job {job['jobId']}")
+            return
+        
         # initialize ok
         status_result = "200"
+        result_connect = False
         
+        from controller.utilities import Utilities, OPERATING_SYSTEM_TYPE
+                
+        if Utilities.getOperatingSystemType() == OPERATING_SYSTEM_TYPE.LINUX:
+            # Initialize the linux serial port manager
+            self.linux_serial_port_manager = LinuxSerialPortManager(
+                                                    self.jsonConfigurationPlugin['port'], 
+                                                    self.jsonConfigurationPlugin['baud_rate'], 
+                                                    self.jsonConfigurationPlugin['byte_size'],
+                                                    self.jsonConfigurationPlugin['parity'],
+                                                self.jsonConfigurationPlugin['stop_bits'])
+        else:
+            self.windows_serial_port_manager = WindowsAsyncSerialManager(self.jsonConfigurationPlugin['port'])    
+
+        # Exemple
+        # json_input = '''
+        #     {
+        #         "items": [
+        #             {"type": "text", "text": "Olá, Mundo!", "x": 0, "y": 0, "font_size": "large"},
+        #             {"type": "barcode", "data": "1234567890", "x": 0, "y": 30},
+        #             {"type": "qrcode", "data": "https://example.com", "x": 0, "y": 100},
+        #             {"type": "image", "path": "image.png", "x": 0, "y": 200}
+        #         ]
+        #     }
+        # '''
+                           
         # Connect to serial port
-        result_connect = self.serial_port_manager.connect()
+        if (Utilities.getOperatingSystemType() == OPERATING_SYSTEM_TYPE.LINUX):
+            result_connect = self.linux_serial_port_manager.connect()
+            self.linux_serial_port_manager.start_communication()
+        else:
+            result_connect = self.windows_serial_port_manager.open_port()
 
         if result_connect:
-            self.serial_port_manager.start_communication()
-
             try:
-                # Exemple
-                # json_input = '''
-                #     {
-                #         "items": [
-                #             {"type": "text", "text": "Olá, Mundo!", "x": 0, "y": 0, "font_size": "large"},
-                #             {"type": "barcode", "data": "1234567890", "x": 0, "y": 30},
-                #             {"type": "qrcode", "data": "https://example.com", "x": 0, "y": 100},
-                #             {"type": "image", "path": "image.png", "x": 0, "y": 200}
-                #         ]
-                #     }
-                # '''
                 self.initialize_printer()
                 
                 # If connected, send the data
@@ -48,12 +72,15 @@ class ReceiptPlugin(PluginBase):
             except:
                 status_result =  "400"
             finally:
-                self.serial_port_manager.stop_communication()
-                self.serial_port_manager.disconnect()
+                self.linux_serial_port_manager.stop_communication()
+                self.linux_serial_port_manager.disconnect()
         else:
             # Connection failed
             status_result = "400"
-
+            
+        self.linux_serial_port_manager = None
+        self.windows_serial_port_manager = None
+            
         self.logger.info(f"Processing {self.plugin_name} result {status_result}")
         return status_result
 
@@ -79,7 +106,15 @@ class ReceiptPlugin(PluginBase):
         """
         Sends an ESC/POS command to the printer
         """
-        self.serial_port_manager.send_data(command)
+        result_send = False
+        
+        if (Utilities.getOperatingSystemType() == OPERATING_SYSTEM_TYPE.LINUX):
+            result_send = self.linux_serial_port_manager.send_data(command)
+        else:
+            result_send = self.windows_serial_port_manager.send_data(command)
+        
+        if result_send == False:
+            raise Exception("Error sending {command}") 
         
     def initialize_printer(self):
         """

@@ -2,7 +2,8 @@
 import logging
 import json
 import os
-from controller.serialPortManager.serial_connection_manager import SerialConnectionManager
+# from controller.serialPortManager.windows_serial_port_manager import WindowsAsyncSerialManager
+# from controller.serialPortManager.linux_serial_connection_manager import LinuxSerialPortManager
 from messages import Messages
 
 class PluginBase:
@@ -17,7 +18,7 @@ class PluginBase:
             directory (str): Plugin directory
         """
         self.logger = logging.getLogger(self.__class__.plugin_name)
-
+        self.jsonConfigurationPlugin = ''
         self.messages = Messages
         
         if (directory != None):
@@ -25,8 +26,8 @@ class PluginBase:
             self.configFilePath = os.path.join(directory, f"{self.__class__.plugin_name}.json")
 
             # Serial port manager will be set by the derived class
-            self.serial_port_manager = None
-
+            self.linux_serial_port_manager = None
+            self.windows_serial_port_manager = None
             self._running = False
         
             # Load configuration
@@ -38,19 +39,10 @@ class PluginBase:
         """
         if os.path.exists(self.configFilePath):
             with open(self.configFilePath, 'r') as file:
-                data = json.load(file)
-                self.logger.info(f"Loaded configuration: {data}")
-
-                # Initialize the serial port manager
-                self.serial_port_manager = SerialConnectionManager(
-                    data['port'], 
-                    data['baud_rate'], 
-                    data['byte_size'],
-                    data['parity'],
-                   data['stop_bits']
-                )
+                self.jsonConfigurationPlugin = json.load(file)
+                self.logger.info(f"Loaded configuration: {self.jsonConfigurationPlugin}")
         else:
-            self.logger.error(self.messages.PLUGIN_CONFIG_NOT_FOUND + self.configFilePath)
+            self.logger.error("Plugin config not found! ()" + self.configFilePath + ")")
     
     def process(self, job = None):
         """

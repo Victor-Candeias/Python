@@ -6,6 +6,9 @@ import time
 from controller.plugin_base import PluginBase
 from config import Config
 from messages import Messages
+from controller.utilities import Utilities, OPERATING_SYSTEM_TYPE
+from controller.serialPortManager.linux_serial_connection_manager import LinuxSerialPortManager
+from controller.serialPortManager.windows_serial_port_manager import WindowsAsyncSerialManager
 
 # set the plugin_name at the base class level
 PluginBase.plugin_name = os.path.splitext(os.path.basename(__file__))[0]
@@ -21,9 +24,10 @@ class BarcodePlugin(PluginBase):
         """
         starts reading the barcode.
         """
-        self._running = True
-        self._thread = threading.Thread(target=self._read_from_serial)
-        self._thread.start()
+        if (self.jsonConfigurationPlugin != ''):
+            self._running = True
+            self._thread = threading.Thread(target=self._read_from_serial)
+            self._thread.start()
 
     def stop(self):
         """
@@ -32,11 +36,16 @@ class BarcodePlugin(PluginBase):
         self._running = False
         if self._thread.is_alive():
             self._thread.join()
-        if self.serial_port_manager.serial_connection and self.serial_port_manager.serial_connection.is_open:
-            self.serial_port_manager.stop_communication()
-            self.serial_port_manager.serial_connection.close()
-            self.logger.info("Serial connection closed.")
+            
+        if (Utilities.getOperatingSystemType() == OPERATING_SYSTEM_TYPE.LINUX):
+            if self.linux_serial_port_manager.serial_connection and self.linux_serial_port_manager.serial_connection.is_open:
+                self.linux_serial_port_manager.stop_communication()
+                self.linux_serial_port_manager.serial_connection.close()
+        else:
+            self.windows_serial_port_manager.close_port()
 
+        self.logger.info("Serial connection closed.")
+        
     def _read_from_serial(self):
         """
         process the given job and handle the serial connection and data transmission.
@@ -44,29 +53,59 @@ class BarcodePlugin(PluginBase):
         self.logger.info(f"Processing {self.plugin_name}")
 
         # connect to serial port
-        result_connect = self.serial_port_manager.connect()
+        result_connect = False
+        
+        from controller.utilities import Utilities, OPERATING_SYSTEM_TYPE
+                
+        if Utilities.getOperatingSystemType() == OPERATING_SYSTEM_TYPE.LINUX:
+            # Initialize the linux serial port manager
+            self.linux_serial_port_manager = LinuxSerialPortManager(
+                                                    self.jsonConfigurationPlugin['port'], 
+                                                    self.jsonConfigurationPlugin['baud_rate'], 
+                                                    self.jsonConfigurationPlugin['byte_size'],
+                                                    self.jsonConfigurationPlugin['parity'],
+                                                    self.jsonConfigurationPlugin['stop_bits'])
+        else:
+            self.windows_serial_port_manager = WindowsAsyncSerialManager(self.jsonConfigurationPlugin['port'])       
+        
+        if (Utilities.getOperatingSystemType() == OPERATING_SYSTEM_TYPE.LINUX):
+            result_connect = self.linux_serial_port_manager.connect()
+            self.linux_serial_port_manager.start_communication()
+        else:
+            result_connect = self.windows_serial_port_manager.open_port()
+            
         status_result = "200"
 
         if result_connect:
             # if connected, send the data
             try:
-                self.serial_port_manager.start_communication()
-
                 self._running = True
 
                 # internal method to continuously read data from the serial port and reconnect in case of failure
                 while self._running:
-                    if not self.serial_connection or not self.serial_connection.is_open:
-                        if not self._connect_serial():
-                            self._running = False
-                            return
-
+                    if (Utilities.getOperatingSystemType() == OPERATING_SYSTEM_TYPE.LINUX):
+                        if not self.linux_serial_port_manager.serial_connection or not self.linux_serial_port_manager.serial_connection.is_open:
+                            if not self.linux_serial_port_manager.connect():
+                                self._running = False
+                                return
+                    else:
+                        if not self.windows_serial_port_manager.check_serial_connection():
+                            if not self.windows_serial_port_manager.open_port():
+                                self._running = False
+                                return
                     try:
-                        if self.serial_port_manager.serial_connection.in_waiting > 0:
-                            data = self.serial_port_manager.serial_connection.readline().decode('utf-8').strip()
-                            self._latest_value = self._process_data(data)
-                            self.logger.debug(f"Data read from the barcode: {data}")
-
+                        data = ""
+                        
+                        if (Utilities.getOperatingSystemType() == OPERATING_SYSTEM_TYPE.LINUX):
+                            if self.linux_serial_port_manager.serial_connection.in_waiting > 0:
+                                data = self.linux_serial_port_manager.serial_connection.readline().decode('utf-8').strip()
+                                # self._latest_value = self._process_data(data)
+                                # self.logger.debug(f"Data read from the barcode: {data}")
+                        else:
+                            data = self.windows_serial_port_manager.listen_for_data()
+                        
+                        self.logger.debug(f"Data read from the barcode: {data}")
+                        
                     except UnicodeDecodeError as e:
                         self.logger.error(f"Error in decoding data: {e}")
 
@@ -78,6 +117,9 @@ class BarcodePlugin(PluginBase):
             # connection failed
             status_result = "400"
 
+        self.linux_serial_port_manager = None
+        self.windows_serial_port_manager = None
+        
         self.logger.info(f"Processing {self.plugin_name} result {status_result}")
         return status_result
 

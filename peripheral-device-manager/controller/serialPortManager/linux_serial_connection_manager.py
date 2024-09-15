@@ -3,7 +3,7 @@ import time
 import logging
 from typing import Callable, Optional
 
-class SerialConnectionManager:
+class LinuxSerialPortManager:
     def __init__(self, port: str, baud_rate: int = 9600, byte_size: int = 8, parity: str = "N", stop_bits: float = 1, timeout: float = 1.0,
                  xon_xoff: bool = False, rtscts: bool = False,
                  max_retries: int = 2, retry_delay: float = 3.0, 
@@ -57,8 +57,8 @@ class SerialConnectionManager:
         delay = self.retry_delay
         while retries < self.max_retries:
             try:
-                self.serial_connection = serial.Serial(port=self.port, baudrate=self.baud_rate,bytesize=self.byte_size,parity=self.parity, stopbits=self.stop_bits, timeout=self.timeout)
-                self.logger.info(f"Connection to serial stablish for port {self.port}.")
+                # self.serial_connection = serial.Serial(port='\\.\COM9', baudrate=self.baud_rate,bytesize=serial.EIGHTBITS,parity=serial.PARITY_EVEN, stopbits=serial.STOPBITS_ONE, timeout=self.timeout)
+                # self.logger.info(f"Connection to serial stablish for port {self.port}.")
                 return True
             except serial.SerialException as e:
                 retries += 1

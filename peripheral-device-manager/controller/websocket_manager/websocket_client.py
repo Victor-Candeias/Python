@@ -1,3 +1,5 @@
+# /controller/websocket_manager/websocket_client.py
+
 import logging
 import time
 import socketio
@@ -5,92 +7,79 @@ import socketio
 class WebSocketClient:
     def __init__(self, serverUrl):
         """
-        Initialize the Socket.IO client
+        Initializes the Socket.IO client.
 
         Args:
-            serverUrl (str): websocket server URL
+            serverUrl (str): WebSocket server URL.
         """
         self.logger = logging.getLogger(__name__)
         self.sio = socketio.Client()
         self.serverUrl = serverUrl
         self.running = False
 
-        # Define event handlers
         @self.sio.event
         def connect():
             """
-            Connect to the Websocket server
+            WebSocket event: connect to the WebSocket server.
             """
-            self.logger.info(f"connect():Connected to the server")
-
-            # Emit a message to join rooms if needed
-            if hasattr(self, 'sessionId') and hasattr(self, 'filters'):
-                self.sio.emit('join', {'sessionId': self.sessionId, 'filters': self.filters})
-
-            elif hasattr(self, 'sessionId') == False and hasattr(self, 'filters'):
-                self.sio.emit('join', {'filters': self.filters})
-
-            elif hasattr(self, 'sessionId') and hasattr(self, 'filters') == False:
-                self.sio.emit('join', {'sessionId': self.sessionId})
-
-            # Optionally send a message after connecting
-            self.sio.emit('message', 'Hello, server!')
+            self.logger.info(f"Connected to {self.serverUrl}")
+            if hasattr(self, 'filters'):
+                self.sio.emit('join', {'rooms': self.filters})
 
         @self.sio.event
         def disconnect():
             """
-            Disconnect from websocket server
+            WebSocket event: disconnect from the WebSocket server.
             """
             self.logger.info('Disconnected from the server')
 
         @self.sio.event
         def messageData(data):
             """
-            Send message to the clients
+            WebSocket event: handle incoming messages.
 
             Args:
-                data (str): message to send
+                data (str): Message data received from the server.
             """
-            self.logger.info("Received message:{data}")
+            self.logger.info(f"Received message: {data}")
 
-    def connect(self, sessionId, filters):
+    def connect(self, filters=None, session_id=None):
         """
-        Connect to the websocket server
+        Connect to the WebSocket server and join rooms.
 
         Args:
-            sessionId (str): Connection sessionId from the client
-            filters (array[str]): Filters to apply to the connection
+            filters (list): List of rooms to join.
+            session_id (str): Optional session ID for the client.
         """
-        self.sessionId = sessionId
-        self.filters = filters
-        
-        # Connect to the WebSocket server
+        self.filters = filters or []
+        self.session_id = session_id
         self.sio.connect(self.serverUrl)
-
         self.running = True
-        
+
     def disconnect(self):
         """
-        Disconnect from the WebSocket server
+        Disconnect from the WebSocket server.
         """
         self.running = False
         self.sio.disconnect()
 
-    def send_message(self, message):
+    def send_message_to_rooms(self, rooms, message):
         """
-        Send a message to the server
+        Send a message to multiple rooms on the server.
 
         Args:
-            message (str): Message to send
+            rooms (list[str]): List of rooms to send the message to.
+            message (str): Message to send.
         """
-        self.sio.emit('message', message)
+        if rooms and message:
+            self.sio.emit('room_message', {'rooms': rooms, 'message': message})
 
-    def keep_running(self, waitTimeToExit = 0):
+    def keep_running(self, waitTimeToExit=0):
         """
-        Keep the program running to listen for events
+        Keep the program running to listen for WebSocket events.
         """
         while self.running:
-            if (waitTimeToExit != 0):
+            if waitTimeToExit != 0:
                 time.sleep(waitTimeToExit)
                 break
             else:
