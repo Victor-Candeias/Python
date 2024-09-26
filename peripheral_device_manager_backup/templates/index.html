@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items List</title>
+</head>
+<body>
+    <h1>Items in the Database</h1>
+    <a href="{{ url_for('app.add_item') }}">Add New Item</a>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Value</th>
+            <th>Actions</th>
+        </tr>
+        {% for item in items %}
+        <tr>
+            <td>{{ item['name'] }}</td>
+            <td>{{ item['value'] }}</td>
+            <td>
+                <a href="{{ url_for('app.update_item', item_id=str(item['_id'])) }}">Update</a>
+                <a href="{{ url_for('app.delete_item', item_id=str(item['_id'])) }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

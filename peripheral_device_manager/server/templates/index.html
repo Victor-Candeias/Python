@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Manager Configuration</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh; /* Full viewport height */
+        }
+
+        .top {
+            background-color: #4CAF50;
+            height: 10%; /* 10% of the viewport height */
+            display: flex;
+        }
+
+        .top .left, .top .right {
+            flex: 1; /* Take up equal width */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .top .left {
+            background-color: #2E7D32;
+            margin: 4px;
+            border-radius: 5px;
+        }
+
+        .top .right {
+            background-color: #2E7D32;
+            margin: 4px;
+            border-radius: 5px;
+        }
+
+        .bottom {
+            background-color: #f1f1f1;
+            flex-grow: 1; /* Takes up the remaining height */
+            display: flex;
+            overflow-y: hidden; /* No scroll for the bottom section itself */
+        }
+
+        .bottom .left {
+            background-color: #e0e0e0;
+            flex: 0 0 65%; /* Left section takes 65% of the width */
+            display: flex;
+            flex-direction: column; /* Vertically split */
+            padding: 0;
+            margin: 4px;
+            border-radius: 5px;
+        }
+
+        .bottom .right {
+            background-color: #cfcfcf;
+            flex: 1; /* Right section takes the remaining width (35%) */
+            padding: 20px;
+            overflow-y: auto; /* Scroll if content exceeds height */
+            margin: 4px;
+            border-radius: 5px;
+        }
+
+        /* Split left part of bottom section */
+        .bottom .left .top-part {
+            background-color: #d0d0d0;
+            height: 5%; /* Top part takes 10% */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #bbb;
+            margin: 4px;
+            border-radius: 5px;
+        }
+
+        .bottom .left .bottom-part {
+            background-color: #f9f9f9;
+            flex-grow: 1; /* Bottom part takes the remaining height */
+            padding: 20px;
+            overflow-y: auto; /* Scroll if content exceeds height */
+            margin: 4px;
+            border-radius: 5px;
+        }
+
+        button {
+            margin-left: 10px;
+            padding: 5px;
+            width: 150px;
+            border-radius: 5px;
+            border: 0px;
+        }
+
+        button:hover {
+            background: #2E7D32;
+            text-decoration: underline;
+            cursor: pointer;
+            color: white;
+        }
+
+        table {
+            width: 100%;
+            border: 1px lightgray solid;
+            border-radius: 5px;
+        }
+
+        td, th {
+            width: 32%;
+            border: 1px lightgray solid;
+            border-radius: 5px;
+        }
+
+        th {
+            border: 1px lightgray solid;
+            border-radius: 5px;
+            background-color: gray;
+            color: white;
+        }
+
+        /* Basic styles for the modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            /* background-color: rgb(0,0,0);  Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 0 auto;
+            padding: 20px;
+            border: 2px solid #222222;;
+            width: 50%; /* Could be more or less, depending on screen size */
+            border-radius: 10px; /* Add this line for border radius */
+        }
+
+        /* Close button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Submit Button Styles */
+        input[type="submit"] {
+            background-color: #007bff; /* Blue background */
+            color: white; /* White text */
+            border: none; /* No border */
+            padding: 10px 20px; /* Vertical and horizontal padding */
+            text-align: center; /* Center text */
+            text-decoration: none; /* No underline */
+            /* display: inline-block;  Inline-block for spacing */
+            font-size: 16px; /* Font size */
+            margin: 10px 0; /* Margin around the button */
+            cursor: pointer; /* Pointer cursor on hover */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s; /* Smooth transition for background color */
+            width: 150px;
+        }
+
+        /* Hover Effect */
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        
+        label {
+            width: 150px;
+            display: inline-block; /* Make the label respect the width property */
+            padding-right: 10px; /* Optional: Adjust spacing between label and input */
+        }
+
+        input {
+            margin-left: 10px; /* Add spacing between the label and input */
+            margin-bottom: 5px;
+        }
+
+        .master {
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid gray;
+            padding: 10px;
+        }
+
+        /* Style the tab buttons */
+        .tab {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .tab button {
+            background-color: #f1f1f1;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        .tab button.active {
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* Hide all tab content by default */
+        .tab-content {
+            display: none;
+        }
+
+        /* Show the active tab content */
+        .tab-content.active {
+            display: block;
+        }
+
+        select {
+            width: 100%;
+            height: 150px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        textarea {
+            width: 100%;    /* Make textarea fill the full width of the div */
+            height: 98%;   /* Make textarea fill the full height of the div */
+            padding: 10px;  /* Optional padding for better appearance */
+            box-sizing: border-box; /* Ensures padding doesn't affect width/height */
+            resize: none;   /* Prevent manual resizing if not needed */
+            overflow: auto; /* Enable scrollbars if the content exceeds the area */
+        }
+
+    </style>
+
+    <script>
+        // Add new item
+        function addItem() {
+            // Show the modal
+            document.getElementById("myModal").style.display = "block";
+        }
+        
+        function deleteItem(id) {
+			const url = '/api/config/' + id;
+			
+            // Make the DELETE request using fetch
+            fetch(url, {
+                method: 'DELETE', // Use DELETE method
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // If the response was successful, process the result
+                    console.log('Item deleted successfully');
+                    
+					// Update List
+					updateDeviceList();
+                } else {
+                    // Handle errors if the response was not successful
+                    console.error('Failed to delete item');
+                    alert('Failed to delete item');
+                }
+            })
+            .catch(error => {
+                // Catch and handle any network errors or unexpected issues
+                console.error('Error:', error);
+                alert('An error occurred');
+            });
+        };
+
+        function getItem(id) {
+			const url = '/api/config/' + id;
+			
+            // Make the DELETE request using fetch
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+
+                console.log(data);
+
+                const jsonString = data
+                            .replace(/'/g, '"') // Replace single quotes with double quotes
+                            .replace(/ObjectId\((.*?)\)/g, '"ObjectId($1)"') // Replace ObjectId with a string
+                            .replace(/\bTrue\b/g, 'true') // Replace True with true
+                            .replace(/\bFalse\b/g, 'false'); // Replace False with false
+
+                console.log(jsonString);
+
+                const jsonParse = JSON.parse(jsonString);
+
+                const prettyJsonString = JSON.stringify(jsonParse, null, 4); // Indent with 4 spaces
+
+                document.getElementById("scrollableTextbox").textContent = prettyJsonString;
+            })
+            .catch(error => {
+                // Catch and handle any network errors or unexpected issues
+                console.error('Error:', error);
+                alert('An error occurred');
+            });
+        };
+
+        // Modal 
+        function closeModal() {
+            // Hide the modal
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        function submitForm(event) {
+            // Prevent the form from submitting the default way
+            event.preventDefault();
+            
+            let jsonParams = "";
+            let autoStartChecked = (document.getElementById("defaultPropAutoStart").value == "Yes");
+
+            try {
+                const select = document.getElementById("naveParameters");
+                const selectedOptions = Array.from(select.selectedOptions);  // Get the selected options
+                const paramsObject = {};
+            
+                // Iterate through the selected options and create the object
+                selectedOptions.forEach((option, index) => {
+                    paramsObject[`param${index + 1}`] = option.value;
+                });
+            
+                // Display the result in a paragraph for demonstration
+                jsonParams = JSON.stringify(paramsObject, null, 2);
+
+            } catch(err){
+                console.log(err);
+            }
+
+            // Save
+            const jsonResult = {
+                name: document.getElementById("defaultPropName").value,
+                jobtype: document.getElementById("defaultPropJobType").value,
+                responseType: document.getElementById("defaultPropResponseType").value,
+                dataFormat: document.getElementById("defaultPropDataFormat").value,
+                autoStart: autoStartChecked,
+                dataEnconding: document.getElementById("defaultPropDataEnconding").value,
+                serialPort: {
+                    port: document.getElementById("serialPortCOMPort").value,
+                    baud_rate: document.getElementById("serialPortBaudRate").value,
+                    byte_size: document.getElementById("serialPortByteSize").value,
+                    parity: document.getElementById("serialPortParity").value,
+                    stop_bits: document.getElementById("serialPortStopBits").value
+                },
+                url: {
+                    url: document.getElementById("urlURL").value,
+                    port: document.getElementById("urlPort").value,
+                    autentication: document.getElementById("urlAutentication").value
+                },
+                nave: {
+                    assembly: document.getElementById("naveAssembly").value,
+                    method: document.getElementById("naveMethod").value,
+                    parameters: { jsonParams }
+                }
+            }
+
+            // Make the POST request
+            fetch('/api/config', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonResult)  // Convert the data to a JSON string
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');  // Handle any errors
+                }
+                return response.json();  // Parse the JSON response
+            })
+            .then(data => {
+                console.log('Success:', data);  // Handle the response data
+            })
+            .catch(error => {
+                console.error('Error:', error);  // Handle any errors
+                alert('An error occurred while submitting the data.');
+            });
+
+            // Close the modal
+            closeModal();
+            
+            // Clear the form
+            document.getElementById("itemForm").reset();
+
+            // Update list
+            updateDeviceList();
+        }
+
+        // Close the modal when clicking outside of the modal content
+        window.onclick = function(event) {
+            const modal = document.getElementById("myModal");
+            if (event.target == modal) {
+                closeModal();
+            }
+        };
+        
+        function updateDeviceList() {
+            fetch('/api/config')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+
+                // change the total Plugins
+                document.getElementById("divTotalPlugins").textContent = "Total Plugins:" + data.length;
+                
+                const tbody = document.querySelector('tbody');
+                tbody.innerHTML = ''; // Clear existing table rows
+
+                data.forEach(item => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td id="${item._id}" style="cursor: pointer;" onclick="getItem(this.id);">${item.name}</td>
+                        <td>${item.jobtype}</td>
+                        <td>${item.responseType}</td>
+                        <td style="text-align: center;"><img id="${item._id}" src="pond1.jpg" onclick="deleteItem(this.id);" alt=" " title="Delete plugin configuration" style="cursor: pointer;"></td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error fetching device list:', error));
+        }
+
+        // Function to log messages to the console
+        function logToConsole(message) {
+            console.log(message);
+        }
+
+            // Function to show the clicked tab and hide others
+        function openTab(evt, tabName) {
+            // Get all elements with class="tab-content" and hide them
+            const tabContent = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove("active");
+            }
+
+            // Get all elements with class="tablink" and remove the class "active"
+            const tablinks = document.getElementsByClassName("tablink");
+            for (let i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Function to check if an item already exists in the list
+        function isDuplicate(item) {
+            const select = document.getElementById("naveParametersList");
+            const options = Array.from(select.options);
+            return options.some(option => option.value.toLowerCase() === item.toLowerCase());
+        }
+
+        // Function to add a new item to the list
+        function addMethodParameter() {
+            const newItem = document.getElementById('naveParameters').value.trim();
+
+            if (newItem === "") {
+                alert("Please enter a valid item.");
+                return;
+            }
+
+            // Check for duplicates
+            if (isDuplicate(newItem)) {
+                alert("Item already exists in the list.");
+                return;
+            }
+
+            const select = document.getElementById("naveParametersList");
+
+            // Create a new option element
+            const option = document.createElement("option");
+            option.value = newItem.toLowerCase(); // Set the value
+            option.text = newItem; // Set the displayed text
+
+            // Add the new option to the select list
+            select.add(option);
+
+            // Clear the input field
+            document.getElementById('naveParameters').value = '';
+        }
+
+    </script>
+</head>
+<body onload="updateDeviceList()">
+
+    <div class="container">
+        <div class="top">
+            <div class="left">Device Manager Configuration</div>
+            <div id="divTotalPlugins" class="right">Total Plugins:</div>
+        </div>
+
+        <!-- Bottom Section -->
+        <div class="bottom">
+            <div class="left">
+                <div class="top-part">
+                    <button onclick="addItem()" id="add_plugin">Add Plugin</button>
+                    <button onclick="updateDeviceList()" id="list_plugin">Refresh</button>
+                </div>
+                <div class="bottom-part">
+                    <h3>Devices List</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Value</th>
+                                <th>Job Type</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="right">
+                <textarea id="scrollableTextbox" name="scrollableTextbox" disabled placeholder="Enter text here..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Enter Item Details</h2>
+
+            <!-- Tab buttons -->
+            <div class="tab">
+                <button class="tablink active" onclick="openTab(event, 'defaultProperties')">Default Properties</button>
+                <button class="tablink" onclick="openTab(event, 'serialPortProperties')">Serial Port</button>
+                <button class="tablink" onclick="openTab(event, 'urlProperties')">URL Config</button>
+                <button class="tablink" onclick="openTab(event, 'naveProperties')">NAVe Config</button>
+            </div>
+
+            <!-- Form that includes all tabs -->
+            <form id="itemForm" onsubmit="submitForm(event)">
+
+                <!-- Tab content: Default Properties -->
+                <div id="defaultProperties" class="tab-content active">
+                    <h5>Default Properties</h5>
+
+                    <!-- Name -->
+                    <div>
+                        <label for="defaultPropName">Name: </label>
+                        <input list="defaultPropOptions" id="defaultPropName" name="defaultPropName" required>
+                        <datalist id="defaultPropOptions">
+                            <option value="label">
+                            <option value="receipt">
+                            <option value="scale">
+                            <option value="barcode">
+                        </datalist>
+                    </div>
+
+                    <!-- Job Type -->
+                    <div>
+                        <label for="defaultPropJobType">Job Type: </label>
+                        <input list="defaultPropJobTypeOptions" id="defaultPropJobType" name="defaultPropJobType" required>
+                        <datalist id="defaultPropJobTypeOptions">
+                            <option value="label">
+                            <option value="receipt">
+                        </datalist>
+                    </div>
+
+                    <!-- Response Type -->
+                    <div>
+                        <label for="defaultPropResponseType">Response Type: </label>
+                        <input list="defaultPropResponseTypeOptions" id="defaultPropResponseType" name="defaultPropResponseType" required>
+                        <datalist id="defaultPropResponseTypeOptions">
+                            <option value="Sync">
+                            <option value="Async">
+                            <option value="send and forget">
+                        </datalist>
+                    </div>
+
+                    <!-- Data Format -->
+                    <div>
+                        <label for="defaultPropDataFormat">Data Format: </label>
+                        <input list="defaultPropDataFormatOptions" id="defaultPropDataFormat" name="defaultPropDataFormat" required>
+                        <datalist id="defaultPropDataFormatOptions">
+                            <option value="PDF">
+                            <option value="Lines">
+                            <option value="Template">
+                        </datalist>
+                    </div>
+
+                    <!-- Auto Start -->
+                    <div>
+                        <label class="label" for="defaultPropAutoStart">Auto Start:</label>
+                        <input list="defaultPropAutoStartOptions" id="defaultPropAutoStart" name="defaultPropAutoStart" required>
+                        <datalist id="defaultPropAutoStartOptions">
+                            <option value="Yes">
+                            <option value="No">
+                        </datalist>
+                    </div>
+
+                    <!-- Data Encoding -->
+                    <div>
+                        <label for="defaultPropDataEnconding">Data Encoding: </label>
+                        <input list="defaultPropDataEncondingOptions" id="defaultPropDataEnconding" name="defaultPropDataEnconding" required>
+                        <datalist id="defaultPropDataEncondingOptions">
+                            <option value="Base64">
+                            <option value="None">
+                        </datalist>
+                    </div>
+                </div>
+
+                <!-- Tab content: Serial Port Properties -->
+                <div id="serialPortProperties" class="tab-content">
+                    <h5>Serial Port Properties</h5>
+                
+                    <div>
+                        <label class="label" for="serialPortCOMPort">Serial Port Name: </label>
+                        <input type="text" id="serialPortCOMPort" name="serialPortCOMPort">
+                    </div>
+
+                    <div>
+                        <label class="label" for="serialPortBaudRate">Baud Rate: </label>
+                        <input type="text" id="serialPortBaudRate" name="serialPortBaudRate">
+                    </div>
+
+                    <div>
+                        <label class="label" for="serialPortByteSize">Byte Size: </label>
+                        <input type="text" id="serialPortByteSize" name="serialPortByteSize">
+                    </div>
+
+                    <div>
+                        <label class="label" for="serialPortParity">Parity: </label>  <!-- Corrected here -->
+                        <input type="text" id="serialPortParity" name="serialPortParity">  <!-- Corrected here -->
+                    </div>
+
+                    <div>
+                        <label class="label" for="serialPortStopBits">Stop Bits: </label>
+                        <input type="text" id="serialPortStopBits" name="serialPortStopBits">
+                    </div>
+                </div>
+
+                <!-- Tab content: URL Properties -->
+                <div id="urlProperties" class="tab-content">
+                    <h5>URL Config</h5>
+                    <div>
+                        <label class="label" for="urlURL">URL: </label>
+                        <input type="text" id="urlURL" name="urlURL">
+                    </div>
+                    <div>
+                        <label class="label" for="urlPort">PORT: </label>
+                        <input type="text" id="urlPort" name="urlPort">
+                    </div>
+                    <div>
+                        <label class="label" for="urlAutentication">Authentication: </label>
+                        <input type="text" id="urlAutentication" name="urlAutentication">
+                    </div>
+                </div>
+
+                <!-- Tab content: NAVe Properties -->
+                <div id="naveProperties" class="tab-content">
+                    <h5>NAVe Config</h5>
+                    <div>
+                        <label class="label" for="naveAssembly">Assembly: </label>
+                        <input type="text" id="naveAssembly" name="naveAssembly">
+                    </div>
+                    <div>
+                        <label class="label" for="naveMethod">Method: </label>
+                        <input type="text" id="naveMethod" name="naveMethod">
+                    </div>
+                    <div>
+                        <label class="label" for="naveParameters">Parameters: </label>
+                        <input type="text" id="naveParameters" name="naveParameters" placeholder="Enter item" />
+
+                        <button type="button" onclick="addMethodParameter()">Add parameter</button>
+                        <select id="naveParametersList" name="naveParametersList" multiple></select>
+                    </div>
+                </div>
+
+                <!-- Single Submit button for all tabs -->
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

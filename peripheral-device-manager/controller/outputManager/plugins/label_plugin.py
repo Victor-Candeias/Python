@@ -3,12 +3,11 @@ import asyncio
 import base64
 import binascii
 import json
+import logging
 import os
 import time
 from controller.plugin_base import PluginBase
 from controller.utilities import Utilities, OPERATING_SYSTEM_TYPE
-from controller.serialPortManager.linux_serial_connection_manager import LinuxSerialPortManager
-from controller.serialPortManager.windows_serial_port_manager import WindowsAsyncSerialManager
 
 # Set the plugin_name at the base class level
 PluginBase.plugin_name = os.path.splitext(os.path.basename(__file__))[0]
@@ -18,106 +17,90 @@ class LabelPlugin(PluginBase):
         """
         Initialize the Label plugin class by calling the base class initializer.
         """
-        super().__init__(os.path.join(os.path.dirname(__file__)))
-        self._running = False
+        self.logger = logging.getLogger(__name__)
+        
+        pluginDir = os.path.join(os.path.dirname(__file__), f"{self.__class__.plugin_name}.json")
+        
+        self.logger.info(f"{PluginBase.plugin_name};__init__();pluginDir={pluginDir}")
+        
+        super().__init__(pluginDir)
 
+    def start(self):
+        """
+        _summary_
+        """
+        from controller.serialPortManager.serial_port_manager import SerialManager
+
+        # get serial port config
+        serialPortConfig = self.jsonConfigurationPlugin["serialPortConfig"]
+        
+        # Create SerialManager instance for COM9 port
+        self.serial_manager = SerialManager(serialPortConfig["port"])
+         
+                                            # serialPortConfig["baud_rate"],
+                                            # serialPortConfig["byte_size"], 
+                                            # serialPortConfig["parity"],
+                                            # serialPortConfig["stop_bits"])
+
+        # Open the serial port with retries
+        if not self.serial_manager.open_port(): 
+            # error 
+            raise Exception(f"Error starting Serial port on {serialPortConfig["port"]}")
+         
+    def stop(self):
+        self._running = False
+    
     def process(self, job):
         """
         Process the given job and handle the serial connection and data transmission.
         """
-        self.logger.info(f"Processing {self.plugin_name} Job {job['jobId']}")
+        self.logger.info(f"{PluginBase.plugin_name}.py;process();job={job}")
 
-        if (self.jsonConfigurationPlugin == ''):
-            self.logger.info(f"Missing configuration for {self.plugin_name} for Job {job['jobId']}")
-            return
-        
         # initialize ok
         status_result = "200"
-        
-        # Connect to serial port
-        result_connect = False
-        
-        from controller.utilities import Utilities, OPERATING_SYSTEM_TYPE
-                
-        # if Utilities.getOperatingSystemType() == OPERATING_SYSTEM_TYPE.LINUX:
-            # Initialize the linux serial port manager
-        #     self.linux_serial_port_manager = LinuxSerialPortManager(
-        #                                             self.jsonConfigurationPlugin['port'], 
-        #                                             self.jsonConfigurationPlugin['baud_rate'], 
-        #                                             self.jsonConfigurationPlugin['byte_size'],
-        #                                             self.jsonConfigurationPlugin['parity'],
-        #                                         self.jsonConfigurationPlugin['stop_bits']
-        #                                         )
-        # else:
-        self.windows_serial_port_manager = WindowsAsyncSerialManager(self.jsonConfigurationPlugin['port'])       
-        
-        if (Utilities.getOperatingSystemType() == OPERATING_SYSTEM_TYPE.LINUX):
-            result_connect = self.linux_serial_port_manager.connect()
-            self.linux_serial_port_manager.start_communication()
-        else:
-            result_connect = self.windows_serial_port_manager.open_port()
             
-        if result_connect:
-            # If connected, send the data
-            json_data = job["printData"]
+        # If connected, send the data
+        json_data = job["printData"]
 
-            # is_valid, result = Utilities.validate_json(json_data)
-            # if is_valid:
-            #     print("Valid JSON")
-            # else:
-            #     status_result = "400"
-            #     self.logger.info(f"Processing {self.plugin_name} invalid JSON {result}")
-            #     return status_result
-
-            try:
-                zpl_content = self.json_to_zpl(json_data)
+        self.logger.info(f"{PluginBase.plugin_name}.py;process();json_data={json_data}")
+        
+        try:
+            zpl_content = self.json_to_zpl(json_data)
+            
+            # Open the serial port with retries
+            if self.serial_manager != None:    
+                # start running
+                self._running = True
                 
-            except ValueError as e:
-                status_result = "400"
-                self.logger.info(f"Processing {self.plugin_name} error converting JSON to ZPL JSON {e}")
-                return status_result
+                # Start listening for data and provide a callback function
+                self.serial_manager.start_listening(self.data_callback)
 
-            try:
-                result_send_data = ""
-                
-                if (Utilities.getOperatingSystemType() == OPERATING_SYSTEM_TYPE.LINUX):
-                    result_send_data = self.linux_serial_port_manager.send_data(zpl_content.encode())
-                else:
-                    # result_send_data = self.windows_serial_port_manager.send_data(zpl_content.encode())
-                        # Start listening for incoming data (asynchronously)
-                    listen_task = asyncio.create_task(self.windows_serial_port_manager.start_listening(self.handle_received_data))
+                # Send data via serial port
+                self.serial_manager.send_data(zpl_content)
 
-                    self._running = True
-                    
-                    while self._running:
-                        # Send some data asynchronously
-                        self.windows_serial_port_manager.send_data("Hello from asyncio!")
-                        
-                        if (self._running == False):
-                            break
-                        
-                        time.sleep(0.1)
-                        
-                
-                status_result = "200" if result_send_data else "400"
-            except Exception as e:
-                self.logger.info(f"Error processing {self.plugin_name} in ZPL JSON {e}")
-                status_result = "400"
-            finally:
-                if (Utilities.getOperatingSystemType() == OPERATING_SYSTEM_TYPE.LINUX):
-                    self.linux_serial_port_manager.stop_communication()
-                    self.linux_serial_port_manager.disconnect()
-                else:
-                    self.windows_serial_port_manager.close_port()
-        else:
+                # Pause for a few seconds to allow data to be received
+                        # O programa ficará em execução até que o callback detecte o evento de parada
+                while self._running:
+                    time.sleep(1)
+
+                # Stop listening and close the port
+                self.serial_manager.stop_listening()
+                self.serial_manager.close_port()
+            
+        except ValueError as e:
             status_result = "400"
-
-        self.linux_serial_port_manager = None
-        self.windows_serial_port_manager = None
+            self.logger.info(f"Processing {self.plugin_name} error converting JSON to ZPL JSON {e}")
             
-        self.logger.info(f"Processing {self.plugin_name} result {status_result}")
-        return status_result
+            return json.dumps({"status": status_result, "error": e})
+ 
+        return json.dumps({"status": status_result, "job": job, "job_result": self.result_data_read})
 
+    def data_callback(self, data):
+        # save result data
+        self.result_data_read = data
+        print(f"Data received from callback: {self.result_data_read}")
+        self._running = False
+        
     def json_to_zpl(self, json_data):
         """
         Convert the json to zpl commands
@@ -189,12 +172,6 @@ class LabelPlugin(PluginBase):
             zpl += "^XZ"
         
         return zpl
-
-    async def handle_received_data(self, data):
-        """Callback function to handle received data."""
-        print(f"Received data: {data}")
-        time.sleep(4)
-        self._running = False
         
 # Register the plugin
 from controller.plugin_registry import PluginRegistry

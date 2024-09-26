@@ -1,0 +1,11 @@
+{
+    "autoStart": false,
+    "serialPortConfig": 
+    {
+        "port": "COM12", 
+        "baud_rate": 9600, 
+        "byte_size": 8, 
+        "parity": "N", 
+        "stop_bits": 1
+    }
+}

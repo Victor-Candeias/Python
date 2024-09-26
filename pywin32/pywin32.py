@@ -4,8 +4,19 @@ import threading
 import time
 
 class SerialManager:
-    def __init__(self, port, baud_rate=9600, byte_size=8, parity=win32file.NOPARITY, stop_bits=win32file.ONESTOPBIT, 
-                 read_interval=50, read_multiplier=10, read_constant=100, write_multiplier=10, write_constant=100):
+    def __init__(self, port, 
+                 baud_rate=9600, 
+                 byte_size=7, 
+                 parity=win32file.EVENPARITY, 
+                 stop_bits=win32file.ONESTOPBIT, 
+                 read_interval=50, 
+                 read_multiplier=10, 
+                 read_constant=100, 
+                 write_multiplier=10, 
+                 write_constant=100,
+                 timeout: float = 1.0, 
+                 max_retries: int = 3, 
+                 retry_interval: float = 2.0):
         
         self.port = '\\\\.\\' + port
         self.baud_rate = baud_rate
@@ -15,52 +26,58 @@ class SerialManager:
         self.handle = None
         self.listening = False
         self.read_thread = None
-
+        self.timeout = timeout
+        self.max_retries = max_retries
+        self.retry_interval = retry_interval
+        
         # define timeout configurations
-        self.read_interval=read_interval
-        self.read_multiplier=read_multiplier
-        self.read_constant=read_constant
-        self.write_multiplier=write_multiplier
-        self.write_constant=write_constant
+        self.read_interval = read_interval
+        self.read_multiplier = read_multiplier
+        self.read_constant = read_constant
+        self.write_multiplier = write_multiplier
+        self.write_constant = write_constant
         
     def open_port(self):
         """
         Open the serial port and configure parameters and timeouts.
         """
-        try:
-            # Open the serial port
-            self.handle = win32file.CreateFile(
-                self.port,
-                win32con.GENERIC_READ | win32con.GENERIC_WRITE,
-                0,
-                None,
-                win32con.OPEN_EXISTING,
-                win32con.FILE_ATTRIBUTE_NORMAL,
-                None
-            )
+        attempt = 0
+        self.running = True
+        while attempt < self.max_retries:
+            try:
+                # Open the serial port
+                self.handle = win32file.CreateFile(
+                    self.port,
+                    win32con.GENERIC_READ | win32con.GENERIC_WRITE,
+                    0,
+                    None,
+                    win32con.OPEN_EXISTING,
+                    win32con.FILE_ATTRIBUTE_NORMAL,
+                    None
+                )
 
-            if self.handle == win32file.INVALID_HANDLE_VALUE:
-                raise Exception(f"Error opening the serial port {self.port}")
+                if self.handle == win32file.INVALID_HANDLE_VALUE:
+                    raise Exception(f"Error opening the serial port {self.port}")
 
-            # Configure serial port parameters
-            dcb = win32file.GetCommState(self.handle)
-            dcb.BaudRate = self.baud_rate
-            dcb.ByteSize = self.byte_size
-            dcb.Parity = self.parity
-            dcb.StopBits = self.stop_bits
+                # Configure serial port parameters
+                dcb = win32file.GetCommState(self.handle)
+                dcb.BaudRate = self.baud_rate
+                dcb.ByteSize = self.byte_size
+                dcb.Parity = self.parity
+                dcb.StopBits = self.stop_bits
 
-            win32file.SetCommState(self.handle, dcb)
+                win32file.SetCommState(self.handle, dcb)
 
-            # Configure read/write timeouts
-            self.set_serial_timeouts()
+                # Configure read/write timeouts
+                self.set_serial_timeouts()
 
-            print(f"Serial port {self.port} open with success.")
-        except Exception as e:
-            print(f"Error opening serial port {self.port}: {e}")
+                print(f"Serial port {self.port} open with success.")
+            except Exception as e:
+                print(f"Error opening serial port {self.port}: {e}")
 
     def close_port(self):
         """
-        Fecha a porta serial.
+        Close the serial port.
         """
         if self.handle:
             win32file.CloseHandle(self.handle)
@@ -72,15 +89,27 @@ class SerialManager:
         Configure timeouts for reading and writing.
         """
         try:
-            timeouts = win32file.COMMTIMEOUTS()
-            timeouts.ReadIntervalTimeout = self.read_interval
-            timeouts.ReadTotalTimeoutMultiplier = self.read_multiplier
-            timeouts.ReadTotalTimeoutConstant = self.read_constant
-            timeouts.WriteTotalTimeoutMultiplier = self.write_multiplier
-            timeouts.WriteTotalTimeoutConstant = self.write_constant
-            
-            win32file.SetCommTimeouts(self.handle, timeouts)
-            
+            # Get the current timeouts (as a tuple)
+            timeouts = win32file.GetCommTimeouts(self.handle)
+
+            # Unpack the tuple
+            (ReadIntervalTimeout, ReadTotalTimeoutMultiplier, ReadTotalTimeoutConstant,
+            WriteTotalTimeoutMultiplier, WriteTotalTimeoutConstant) = timeouts
+
+            # Update the values with the class attributes
+            ReadIntervalTimeout = self.read_interval
+            ReadTotalTimeoutMultiplier = self.read_multiplier
+            ReadTotalTimeoutConstant = self.read_constant
+            WriteTotalTimeoutMultiplier = self.write_multiplier
+            WriteTotalTimeoutConstant = self.write_constant
+
+            # Pack the updated timeouts back into a tuple
+            updated_timeouts = (ReadIntervalTimeout, ReadTotalTimeoutMultiplier, ReadTotalTimeoutConstant,
+                                WriteTotalTimeoutMultiplier, WriteTotalTimeoutConstant)
+
+            # Set the updated timeouts
+            win32file.SetCommTimeouts(self.handle, updated_timeouts)
+
             print("Configured timeouts.")
             
         except Exception as e:
@@ -136,7 +165,7 @@ class SerialManager:
             print("Listening for new data...")
 
     def stop_listening(self):
-        """For listening to data."""
+        """Stop listening to data."""
         self.listening = False
         if self.read_thread:
             self.read_thread.join()
@@ -155,7 +184,7 @@ class SerialManager:
 if __name__ == "__main__":
     # Usage example:
     # Create SerialManager instance for COM9 port
-    serial_manager = SerialManager(r'COM10')
+    serial_manager = SerialManager(r'COM9')
 
     # Open the serial port
     serial_manager.open_port()
@@ -169,15 +198,6 @@ if __name__ == "__main__":
     # Pause for a few seconds to allow data to be received
     time.sleep(5)
 
-    # Stop listening and close the door
+    # Stop listening and close the port
     serial_manager.stop_listening()
     serial_manager.close_port()
-
-    # import os
-
-    # if os.name == 'nt':    #check if windows 
-    # a='\\'
-    # else:
-    # a='/'
-
-    # source = "C:"+a+"Users"+a+"[username]"+a+"Downloads"+a

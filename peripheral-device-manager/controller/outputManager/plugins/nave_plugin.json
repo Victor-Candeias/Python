@@ -1,4 +1,8 @@
 {
-    "receipt_assembly_qualified_name":"Ctt.Nave.Core.Printing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b38faaec20f87cd9, processorArchitecture=MSIL",
-    "label_assembly_qualified_name":"Ctt.Nave.Core.Printing.Labels, Version=2.0.0.0, Culture=neutral, PublicKeyToken=4504193b13ea0f7f, processorArchitecture=MSIL"
+    "autoStart": false,
+    "assemblies": 
+    {
+        "receipt_assembly_qualified_name":"Ctt.Nave.Core.Printing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b38faaec20f87cd9, processorArchitecture=MSIL",
+        "label_assembly_qualified_name":"Ctt.Nave.Core.Printing.Labels, Version=2.0.0.0, Culture=neutral, PublicKeyToken=4504193b13ea0f7f, processorArchitecture=MSIL"
+    }
 }

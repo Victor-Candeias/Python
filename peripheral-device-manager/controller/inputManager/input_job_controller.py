@@ -1,3 +1,5 @@
+# controller/inputManager/input_job_controller.py
+
 import importlib
 import logging
 import os
@@ -25,14 +27,21 @@ class InputJobController:
         # register all plugins
         self.plugins = Utilities.registerPlugins(self.pluginsDirectory, self.logger, "inputManager")
 
-        self.logger.info(f"_register_all_plugins();input plugin count {len(self.plugins)}")
-
-        # start all plugin job processing
-        # in the input manager all plugins are listening to events from the devices
-        for plugin in self.plugins.values():
-            plugin.start()
+        self.logger.info(f"input_job_controller.py;__init__;self.plugins register count={len(self.plugins)}")
 
     def create_input(self, data, serverUrl):
+        """_summary_
+
+        Args:
+            data (_type_): _description_
+            serverUrl (_type_): _description_
+
+        Returns:
+            _type_: _description_
+        """
+        self.logger.info(f"input_job_controller.py;create_input;data={data}")
+        self.logger.info(f"input_job_controller.py;create_input;serverUrl={serverUrl}")
+        
         data = request.json
         machineId = data.get('machineId')
         sessionId = data.get('sessionId')
@@ -41,7 +50,9 @@ class InputJobController:
         extraData = data.get('extraData', {})
 
         if not machineId or not sessionId or not inputType or not value:
-            return jsonify({'error': 'Machine ID, Session ID, Input Type, and Input Data are required'}), 400
+            self.logger.info(f"input_job_controller.py;create_input;Error=Machine ID, Session ID, Input Type, and Input Data are required")
+            
+            return {"error": "Machine ID, Session ID, Input Type, and Input Data are required", "status": "400"}
 
         # builds the message to be sent
         message = {
@@ -61,7 +72,7 @@ class InputJobController:
             resultStatus = Messages._instance.STATUS_RESULT_ERROR
 
         # return result
-        return jsonify({'status': 'success', 'message': 'Input data sent to WebSocket clients'}), resultStatus
+        return {"status": "200",'message': 'Input data sent to WebSocket clients'}
 
     def stop(self):
         """

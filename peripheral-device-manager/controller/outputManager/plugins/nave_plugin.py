@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 from tkinter import Image
 from controller.plugin_base import PluginBase
@@ -12,29 +13,14 @@ class NavePlugin(PluginBase):
         """
         Initialize the Receipt plugin class by calling the base class initializer.
         """
-        super().__init__()
+        self.logger = logging.getLogger(__name__)
         
-        # load current configuration
-        self.load_configuration()
-
-    def load_configuration(self):
-        """
-        Load the plugin configuration from a JSON file.
-        """
-        # Path of the config file based on the plugin name
-        self.configFilePath = os.path.join(os.path.dirname(__file__), f"{self.__class__.plugin_name}.json")
+        pluginDir = os.path.join(os.path.dirname(__file__), f"{self.__class__.plugin_name}.json")
         
-        if os.path.exists(self.configFilePath):
-            with open(self.configFilePath, 'r') as file:
-                data = json.load(file)
-                self.logger.info(f"Loaded configuration: {data}")
-
-                # initialize the vars
-                self.receipt_assembly_qualified_name = data['receipt_assembly_qualified_name']
-                self.label_assembly_qualified_name = data['label_assembly_qualified_name']
-        else:
-            self.logger.error(self.messages.PLUGIN_CONFIG_NOT_FOUND + self.configFilePath)
-
+        self.logger.info(f"{PluginBase.plugin_name};__init__();pluginDir={pluginDir}")
+        
+        super().__init__(pluginDir)
+        
     def process(self, job):
         """
         Process the given job and handle the serial connection and data transmission.

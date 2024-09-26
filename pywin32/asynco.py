@@ -5,7 +5,7 @@ import threading
 import time
 
 class WindowsAsyncSerialManager:
-    def __init__(self, port, baud_rate=9600, byte_size=8, parity=win32file.NOPARITY, stop_bits=win32file.ONESTOPBIT):
+    def __init__(self, port, baud_rate=9600, byte_size=8, parity=win32file.EVENPARITY, stop_bits=win32file.ONESTOPBIT):
         self.port = f"\\\\.\\{port}"
         self.baud_rate = baud_rate
         self.byte_size = byte_size

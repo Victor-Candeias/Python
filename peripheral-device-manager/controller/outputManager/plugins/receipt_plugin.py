@@ -1,11 +1,11 @@
 # controller/plugins/receipt_plugin.py
 import json
+import logging
 import os
+import time
 from tkinter import Image
 from controller.plugin_base import PluginBase
 from controller.utilities import Utilities, OPERATING_SYSTEM_TYPE
-from controller.serialPortManager.linux_serial_connection_manager import LinuxSerialPortManager
-from controller.serialPortManager.windows_serial_port_manager import WindowsAsyncSerialManager
 
 # Set the plugin_name at the base class level
 PluginBase.plugin_name = os.path.splitext(os.path.basename(__file__))[0]
@@ -15,35 +15,48 @@ class ReceiptPlugin(PluginBase):
         """
         Initialize the Receipt plugin class by calling the base class initializer.
         """
-        super().__init__(os.path.join(os.path.dirname(__file__)))
+        self.logger = logging.getLogger(__name__)
+        
+        pluginDir = os.path.join(os.path.dirname(__file__), f"{self.__class__.plugin_name}.json")
+        
+        self.logger.info(f"{PluginBase.plugin_name};__init__();pluginDir={pluginDir}")
+        
+        self.finish_send_data = False
+        
+        self.result_data_read = ""
+        
+        super().__init__(pluginDir)
+
+    def start(self):
+        """
+        _summary_
+        """
+        from controller.serialPortManager.serial_port_manager import SerialManager
+
+        # get serial port config
+        serialPortConfig = self.jsonConfigurationPlugin["serialPortConfig"]
+        
+        # Create SerialManager instance for COM9 port
+        self.serial_manager = SerialManager(serialPortConfig["port"])
+         
+                                            # serialPortConfig["baud_rate"],
+                                            # serialPortConfig["byte_size"], 
+                                            # serialPortConfig["parity"],
+                                            # serialPortConfig["stop_bits"])
+
+        # Open the serial port with retries
+        if not self.serial_manager.open_port(): 
+            # error 
+            raise Exception(f"Error starting Serial port on {serialPortConfig["port"]}")
+
+    def stop(self):
+        # self._running = False
+        self.finish_send_data = False
         
     def process(self, job):
         """
         Process the given job and handle the serial connection and data transmission.
         """
-        self.logger.info(f"Processing {self.plugin_name} Job {job['job_id']}")
-
-        if (self.jsonConfigurationPlugin == ''):
-            self.logger.info(f"Missing configuration for {self.plugin_name} for Job {job['jobId']}")
-            return
-        
-        # initialize ok
-        status_result = "200"
-        result_connect = False
-        
-        from controller.utilities import Utilities, OPERATING_SYSTEM_TYPE
-                
-        if Utilities.getOperatingSystemType() == OPERATING_SYSTEM_TYPE.LINUX:
-            # Initialize the linux serial port manager
-            self.linux_serial_port_manager = LinuxSerialPortManager(
-                                                    self.jsonConfigurationPlugin['port'], 
-                                                    self.jsonConfigurationPlugin['baud_rate'], 
-                                                    self.jsonConfigurationPlugin['byte_size'],
-                                                    self.jsonConfigurationPlugin['parity'],
-                                                self.jsonConfigurationPlugin['stop_bits'])
-        else:
-            self.windows_serial_port_manager = WindowsAsyncSerialManager(self.jsonConfigurationPlugin['port'])    
-
         # Exemple
         # json_input = '''
         #     {
@@ -55,42 +68,65 @@ class ReceiptPlugin(PluginBase):
         #         ]
         #     }
         # '''
-                           
-        # Connect to serial port
-        if (Utilities.getOperatingSystemType() == OPERATING_SYSTEM_TYPE.LINUX):
-            result_connect = self.linux_serial_port_manager.connect()
-            self.linux_serial_port_manager.start_communication()
-        else:
-            result_connect = self.windows_serial_port_manager.open_port()
+        self.logger.info(f"{PluginBase.plugin_name};process();job={job}")
 
-        if result_connect:
-            try:
+        # initialize ok
+        json_data_result = ""
+            
+        # If connected, send the data
+        json_data = job["printData"]
+
+        self.logger.info(f"{PluginBase.plugin_name}.py;process();json_data={json_data}")
+        
+        try:
+            # Open the serial port with retries
+            if self.serial_manager != None:    
+                # start running
+                # self._running = True
+                
+                # Start listening for data and provide a callback function
+                self.serial_manager.start_listening(self.data_callback)
+
                 self.initialize_printer()
                 
-                # If connected, send the data
-                self.process_json(job["printData"])
-            except:
-                status_result =  "400"
-            finally:
-                self.linux_serial_port_manager.stop_communication()
-                self.linux_serial_port_manager.disconnect()
-        else:
-            # Connection failed
+                json_data_result = self.process_json(json_data)
+                
+                # finish send data
+                self.finish_send_data = True
+            
+                # Pause for a few seconds to allow data to be received
+                while not self.finish_send_data:
+                    time.sleep(1)
+            
+                json_data_result = json.dumps({"status": status_result, "job": job, "job_result": self.result_data_read})
+                
+        except ValueError as e:
             status_result = "400"
+            self.logger.info(f"Processing {self.plugin_name} error converting JSON to ZPL JSON {e}")
             
-        self.linux_serial_port_manager = None
-        self.windows_serial_port_manager = None
-            
-        self.logger.info(f"Processing {self.plugin_name} result {status_result}")
-        return status_result
+            json_data_result = json.dumps({"status": status_result, "error": e})
+ 
+        # Stop listening and close the port
+        self.serial_manager.stop_listening()
+        self.serial_manager.close_port()
+                
+        return json_data_result
+
+    def data_callback(self, data):
+        # save result data
+        self.result_data_read = self.result_data_read + "\n" + data
+        print(f"Data received from callback: {self.result_data_read}")
+        # self._running = False
 
     def process_json(self, json_data):
         """
         Processes JSON and prints as specified
         """
-        data = json.loads(json_data)
+        self.logger.info(f"{PluginBase.plugin_name};process_json();json_data={json_data}")
+        
+        # data = json.loads(json_data)
 
-        for item in data['items']:
+        for item in json_data: #['items']:
             if item['type'] == 'text':
                 self.print_text(item['text'], item['x'], item['y'], item['font_size'])
             elif item['type'] == 'barcode':
@@ -106,15 +142,8 @@ class ReceiptPlugin(PluginBase):
         """
         Sends an ESC/POS command to the printer
         """
-        result_send = False
-        
-        if (Utilities.getOperatingSystemType() == OPERATING_SYSTEM_TYPE.LINUX):
-            result_send = self.linux_serial_port_manager.send_data(command)
-        else:
-            result_send = self.windows_serial_port_manager.send_data(command)
-        
-        if result_send == False:
-            raise Exception("Error sending {command}") 
+        # Send data via serial port
+        self.serial_manager.send_data(command.decode())
         
     def initialize_printer(self):
         """

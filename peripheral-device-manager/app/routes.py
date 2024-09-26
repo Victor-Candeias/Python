@@ -40,7 +40,7 @@ def create_input():
     data = request.json
     data = input_job_controller.create_input(data, request.host_url)
     
-    return data
+    return jsonify({"result" : data})
 
 # -----------------------------------------------------------
 @api.route('/output_job', methods=['POST'])
@@ -49,22 +49,14 @@ def create_output():
     define the route for creating an output job for receipt printers, label printers, etc.
     The output job could be synchronous or asynchronous
     receive a json
-        {
-        "machineid":"1",
-        "sessionid":"1",
-        "userinfo":"1",
-        "ticket_id":"1",
-        "type_of_job":"receipt",
-        "job_mode":"synchronous",
-        "date":"2024-08-24"
-        }
-        
+
     Returns:
         json string: return the job id.
     """
     data = request.json
-    job_id = output_job_controller.add_job(data, request.host_url)
-    return jsonify({"job_id": job_id})
+    jobId = output_job_controller.add_job(data, request.host_url)
+    
+    return jsonify({"jobId": jobId})
 
 # -----------------------------------------------------------
 @api.route('/output_job', methods=['DELETE'])
@@ -77,6 +69,7 @@ def delete_output():
     """
     data = request.json
     result = output_job_controller.delete_job(data)
+    
     return jsonify({"result": result})
 
 # -----------------------------------------------------------
@@ -92,7 +85,8 @@ def list_outputs():
     # use query parameters for GET request
     data = request.args.to_dict()  
     jobs = output_job_controller.list_jobs(data)
-    return jsonify(jobs)
+    
+    return jsonify({'jobs': jobs})
         
 # -----------------------------------------------------------
 @api.route('/devices', methods=['GET'])
@@ -111,4 +105,4 @@ def devices():
     # append input plugins
     devices_list.append(input_job_controller.list_all_plugins())
     
-    return jsonify(devices_list)
+    return jsonify({'deviceList' : devices_list})

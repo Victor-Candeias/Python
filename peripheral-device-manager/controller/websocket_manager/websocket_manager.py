@@ -25,8 +25,11 @@ class WebSocketManager:
         if rooms:
             for room in rooms:
                 self.socketio.emit('message', {'room': room, 'message': message}, room=room)
+                self.logger.info(f"websocket_manager.py;send_message();room={room}")
+                self.logger.info(f"websocket_manager.py;send_message();message={message}")
         else:
             self.socketio.emit('message', message, broadcast=True)
+            self.logger.info(f"websocket_manager.py;send_message();message={message}")
 
     def join_rooms(self, rooms: list):
         """
@@ -38,7 +41,7 @@ class WebSocketManager:
         for room in rooms:
             join_room(room)
         
-        self.logger.info(f"Joined rooms: {', '.join(rooms)}", rooms)
+        self.logger.info(f"websocket_manager.py;join_rooms();Joined rooms: {', '.join(rooms)}")
 
     def leave_rooms(self, rooms: list):
         """
@@ -50,7 +53,7 @@ class WebSocketManager:
         for room in rooms:
             leave_room(room)
             
-        self.logger.info(f"Left rooms: {', '.join(rooms)}", rooms)
+        self.logger.info(f"websocket_manager.py;leave_rooms();Joined rooms: {', '.join(rooms)}")
 
     def broadcast_message(self, message: str, rooms: list = None):
         """

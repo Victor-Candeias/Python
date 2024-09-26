@@ -1,15 +1,11 @@
 {
-    "port": "COM9", 
-    "baud_rate": 9600, 
-    "byte_size": 8, 
-    "parity": "N", 
-    "stop_bits": 1, 
-    "timeout": 1.0,
-    "xon_xoff": "False", 
-    "rtscts": "False",
-    "max_retries": 5, 
-    "retry_delay": 5.0, 
-    "exponential_backoff": "False", 
-    "on_data_received": "", 
-    "on_reconnect": ""
+    "autoStart": false,
+    "serialPortConfig": 
+    {
+        "port": "COM9", 
+        "baud_rate": 9600, 
+        "byte_size": 8, 
+        "parity": 2, 
+        "stop_bits": 1
+    }
 }
